@@ -26,7 +26,6 @@ public class DiagnosisService {
 
         // set content type of body and type to accept
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         // build the request
         HttpEntity<DiagnosisRequest> request = new HttpEntity<>(diagnosisRequest,headers);

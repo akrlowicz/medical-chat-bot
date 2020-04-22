@@ -22,8 +22,6 @@ public class SymptomService {
         headers.set("App-Id","19963157");
         headers.set("App-Key","f3ad821855191f2c852f1efa79d1456f");
 
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity<Symptom> request = new HttpEntity<>(headers);
 
