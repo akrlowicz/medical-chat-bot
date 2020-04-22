@@ -6,8 +6,13 @@ public class Item {
     //question item
 
     private String id;
+
     private String name;
+
     private List<Choices> choices;
+
+    public Item() {
+    }
 
     public Item(String id, String name, List<Choices> choices) {
         this.id = id;

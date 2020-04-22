@@ -3,7 +3,11 @@ package io.project.edoctor.model;
 public class Choices {
 
     private String id;
+
     private String label;
+
+    public Choices() {
+    }
 
     public Choices(String id, String label) {
         this.id = id;

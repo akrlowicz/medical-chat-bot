@@ -5,8 +5,14 @@ import java.util.List;
 public class DiagnosisRequest {
 
     private String sex;
+
     private int age;
+
     private List<Evidence> evidence; //list of symptoms, risk factors and test results
+
+
+    public DiagnosisRequest() {
+    }
 
     public DiagnosisRequest(String sex, int age, List<Evidence> evidence) {
         this.sex = sex;

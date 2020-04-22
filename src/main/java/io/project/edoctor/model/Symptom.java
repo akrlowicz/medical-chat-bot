@@ -1,33 +1,60 @@
 package io.project.edoctor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+
 public class Symptom {
 
     private String id;
-    private String name;
-    private String common_name;
-    private String sex_filter;
-    private String category;
-    private String seriousness;
-    private String extras;
-    private String children;
-    private String image_url;
-    private String image_source;
-    private String parent_id;
-    private String parent_relation;
 
-    public Symptom(String id, String name, String common_name, String sex_filter, String category, String seriousness, String extras, String children, String image_url, String image_source, String parent_id, String parent_relation) {
+    private String name;
+
+    @JsonProperty("common_name")
+    private String commonName;
+
+    private String question;
+
+    @JsonProperty("sex_filter")
+    private String sexFilter;
+
+    private String category;
+
+    private String seriousness;
+
+    private Object extras;
+
+    private List<Children> children;
+
+    @JsonProperty("image_url")
+    private String imageUrl;
+
+    @JsonProperty("image_source")
+    private String imageSource;
+
+    @JsonProperty("parent_id")
+    private String parentId;
+
+    @JsonProperty("parent_relation")
+    private String parentRelation;
+
+    public Symptom() {
+    }
+
+    public Symptom(String id, String name, String commonName, String question, String sexFilter, String category, String seriousness, Object extras, List<Children> children, String imageUrl, String imageSource, String parentId, String parentRelation) {
         this.id = id;
         this.name = name;
-        this.common_name = common_name;
-        this.sex_filter = sex_filter;
+        this.commonName = commonName;
+        this.question = question;
+        this.sexFilter = sexFilter;
         this.category = category;
         this.seriousness = seriousness;
         this.extras = extras;
         this.children = children;
-        this.image_url = image_url;
-        this.image_source = image_source;
-        this.parent_id = parent_id;
-        this.parent_relation = parent_relation;
+        this.imageUrl = imageUrl;
+        this.imageSource = imageSource;
+        this.parentId = parentId;
+        this.parentRelation = parentRelation;
     }
 
     public String getId() {
@@ -46,20 +73,28 @@ public class Symptom {
         this.name = name;
     }
 
-    public String getCommon_name() {
-        return common_name;
+    public String getCommonName() {
+        return commonName;
     }
 
-    public void setCommon_name(String common_name) {
-        this.common_name = common_name;
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
     }
 
-    public String getSex_filter() {
-        return sex_filter;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setSex_filter(String sex_filter) {
-        this.sex_filter = sex_filter;
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getSexFilter() {
+        return sexFilter;
+    }
+
+    public void setSexFilter(String sexFilter) {
+        this.sexFilter = sexFilter;
     }
 
     public String getCategory() {
@@ -78,51 +113,51 @@ public class Symptom {
         this.seriousness = seriousness;
     }
 
-    public String getExtras() {
+    public Object getExtras() {
         return extras;
     }
 
-    public void setExtras(String extras) {
+    public void setExtras(Object extras) {
         this.extras = extras;
     }
 
-    public String getChildren() {
+    public List<Children> getChildren() {
         return children;
     }
 
-    public void setChildren(String children) {
+    public void setChildren(List<Children> children) {
         this.children = children;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public String getImage_source() {
-        return image_source;
+    public String getImageSource() {
+        return imageSource;
     }
 
-    public void setImage_source(String image_source) {
-        this.image_source = image_source;
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
     }
 
-    public String getParent_id() {
-        return parent_id;
+    public String getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(String parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
-    public String getParent_relation() {
-        return parent_relation;
+    public String getParentRelation() {
+        return parentRelation;
     }
 
-    public void setParent_relation(String parent_relation) {
-        this.parent_relation = parent_relation;
+    public void setParentRelation(String parentRelation) {
+        this.parentRelation = parentRelation;
     }
 }

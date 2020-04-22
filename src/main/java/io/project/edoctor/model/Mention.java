@@ -1,20 +1,32 @@
 package io.project.edoctor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Mention {
 
     private String id;
+
     private String name;
-    private String common_name;
+
+    @JsonProperty("common_name")
+    private String commonName;
+
     private String orth;
-    private String choice_id;
+
+    @JsonProperty("choice_id")
+    private String choiceId;
+
     private String type; //symptom ex.
 
-    public Mention(String id, String name, String common_name, String orth, String choice_id, String type) {
+    public Mention() {
+    }
+
+    public Mention(String id, String name, String commonName, String orth, String choiceId, String type) {
         this.id = id;
         this.name = name;
-        this.common_name = common_name;
+        this.commonName = commonName;
         this.orth = orth;
-        this.choice_id = choice_id;
+        this.choiceId = choiceId;
         this.type = type;
     }
 
@@ -34,12 +46,12 @@ public class Mention {
         this.name = name;
     }
 
-    public String getCommon_name() {
-        return common_name;
+    public String getCommonName() {
+        return commonName;
     }
 
-    public void setCommon_name(String common_name) {
-        this.common_name = common_name;
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
     }
 
     public String getOrth() {
@@ -50,12 +62,12 @@ public class Mention {
         this.orth = orth;
     }
 
-    public String getChoice_id() {
-        return choice_id;
+    public String getChoiceId() {
+        return choiceId;
     }
 
-    public void setChoice_id(String choice_id) {
-        this.choice_id = choice_id;
+    public void setChoiceId(String choiceId) {
+        this.choiceId = choiceId;
     }
 
     public String getType() {

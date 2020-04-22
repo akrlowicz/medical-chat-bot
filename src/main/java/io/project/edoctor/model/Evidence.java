@@ -1,20 +1,28 @@
 package io.project.edoctor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Evidence {
 
     private String id; //symptom, risk factor or lab test
-    private String choice_id; //present/absent
+
+    @JsonProperty("choice_id")
+    private String choiceId; //present/absent
+
     private boolean initial;  //at least one true
 
-    public Evidence(String id, String choice_id, boolean initial) {
-        this.id = id;
-        this.choice_id = choice_id;
-        this.initial = initial;
+    public Evidence() {
     }
 
-    public Evidence(String id, String choice_id) {
+    public Evidence(String id, String choiceId) {
         this.id = id;
-        this.choice_id = choice_id;
+        this.choiceId = choiceId;
+    }
+
+    public Evidence(String id, String choiceId, boolean initial) {
+        this.id = id;
+        this.choiceId = choiceId;
+        this.initial = initial;
     }
 
     public String getId() {
@@ -25,11 +33,19 @@ public class Evidence {
         this.id = id;
     }
 
-    public String getChoice_id() {
-        return choice_id;
+    public String getChoiceId() {
+        return choiceId;
     }
 
-    public void setChoice_id(String choice_id) {
-        this.choice_id = choice_id;
+    public void setChoiceId(String choiceId) {
+        this.choiceId = choiceId;
+    }
+
+    public boolean isInitial() {
+        return initial;
+    }
+
+    public void setInitial(boolean initial) {
+        this.initial = initial;
     }
 }

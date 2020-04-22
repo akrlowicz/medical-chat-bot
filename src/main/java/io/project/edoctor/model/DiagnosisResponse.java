@@ -1,18 +1,33 @@
 package io.project.edoctor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class DiagnosisResponse {
 
     private Question question;
-    private List<Condition> conditions;
-    private boolean should_stop;
-    private String extras;
 
-    public DiagnosisResponse(Question question, List<Condition> conditions, boolean should_stop, String extras) {
+    private List<Condition> conditions;
+
+    @JsonProperty("should_stop")
+    private boolean shouldStop;
+
+    private Object extras;
+
+    public DiagnosisResponse() {
+    }
+
+    public DiagnosisResponse(Question question, List<Condition> conditions, Object extras) {
         this.question = question;
         this.conditions = conditions;
-        this.should_stop = should_stop;
+        this.extras = extras;
+    }
+
+    public DiagnosisResponse(Question question, List<Condition> conditions, boolean shouldStop, Object extras) {
+        this.question = question;
+        this.conditions = conditions;
+        this.shouldStop = shouldStop;
         this.extras = extras;
     }
 
@@ -32,19 +47,19 @@ public class DiagnosisResponse {
         this.conditions = conditions;
     }
 
-    public boolean isShould_stop() {
-        return should_stop;
+    public boolean isShouldStop() {
+        return shouldStop;
     }
 
-    public void setShould_stop(boolean should_stop) {
-        this.should_stop = should_stop;
+    public void setShouldStop(boolean shouldStop) {
+        this.shouldStop = shouldStop;
     }
 
-    public String getExtras() {
+    public Object getExtras() {
         return extras;
     }
 
-    public void setExtras(String extras) {
+    public void setExtras(Object extras) {
         this.extras = extras;
     }
 }

@@ -9,6 +9,9 @@ public class Parse {
     private List<Mention> mentions;
     private boolean obvious;
 
+    public Parse() {
+    }
+
     public Parse(List<Mention> mentions, boolean obvious) {
         this.mentions = mentions;
         this.obvious = obvious;

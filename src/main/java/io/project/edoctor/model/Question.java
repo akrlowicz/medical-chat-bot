@@ -5,17 +5,17 @@ import java.util.List;
 public class Question {
 
     private String type; //single/group_single/gorup_multiple -> further note: we can disable group questions
-    private String text;
-    private List<Item> items;
-    private String extras;
 
-    public Question(String type, String text, List<Item> items) {
-        this.type = type;
-        this.text = text;
-        this.items = items;
+    private String text;
+
+    private List<Item> items;
+
+    private Object extras;
+
+    public Question() {
     }
 
-    public Question(String type, String text, List<Item> items, String extras) {
+    public Question(String type, String text, List<Item> items, Object extras) {
         this.type = type;
         this.text = text;
         this.items = items;
@@ -46,11 +46,11 @@ public class Question {
         this.items = items;
     }
 
-    public String getExtras() {
+    public Object getExtras() {
         return extras;
     }
 
-    public void setExtras(String extras) {
+    public void setExtras(Object extras) {
         this.extras = extras;
     }
 }

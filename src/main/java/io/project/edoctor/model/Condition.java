@@ -1,17 +1,25 @@
 package io.project.edoctor.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Condition {
 
     private String id;
+
     private String name;
-    private String common_name;
+
+    @JsonProperty("common_name")
+    private String commonName;
+
     private double probability;
 
+    public Condition() {
+    }
 
-    public Condition(String id, String name, String common_name, double probability) {
+    public Condition(String id, String name, String commonName, double probability) {
         this.id = id;
         this.name = name;
-        this.common_name = common_name;
+        this.commonName = commonName;
         this.probability = probability;
     }
 
@@ -31,12 +39,12 @@ public class Condition {
         this.name = name;
     }
 
-    public String getCommon_name() {
-        return common_name;
+    public String getCommonName() {
+        return commonName;
     }
 
-    public void setCommon_name(String common_name) {
-        this.common_name = common_name;
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
     }
 
     public double getProbability() {
