@@ -2,11 +2,13 @@ package io.project.edoctor.service;
 
 import io.project.edoctor.model.Parse;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ParseService {
 
     private String url = "https://api.infermedica.com/v2/parse";

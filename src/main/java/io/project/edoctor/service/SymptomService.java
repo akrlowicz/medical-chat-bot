@@ -3,10 +3,12 @@ package io.project.edoctor.service;
 import io.project.edoctor.model.Symptom;
 import org.apache.coyote.Response;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
+@Service
 public class SymptomService {
 
     private String url = "https://api.infermedica.com/v2/symptoms/{id}";
