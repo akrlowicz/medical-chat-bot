@@ -32,7 +32,7 @@ public class ParseService {
 
         ResponseEntity<Parse> response = this.restTemplate.postForEntity(url, request, Parse.class);
 
-        if (response.getStatusCode() == HttpStatus.CREATED)
+        if (response.getStatusCode() == HttpStatus.OK)
             return response.getBody();
         else
             return null;

@@ -7,8 +7,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-
 @Service
 public class DiagnosisService {
 
@@ -33,7 +31,7 @@ public class DiagnosisService {
         ResponseEntity<DiagnosisResponse> response = this.restTemplate.postForEntity(url, request, DiagnosisResponse.class);
 
         // check response status code
-        if (response.getStatusCode() == HttpStatus.CREATED)
+        if (response.getStatusCode() == HttpStatus.OK)
             return response.getBody();
         else
             return null;
@@ -41,7 +39,6 @@ public class DiagnosisService {
 
         // alternatively
         //DiagnosisResponse response = this.restTemplate.postForObject(url, request, DiagnosisResponse.class);
-
         //return response;
     }
 }
