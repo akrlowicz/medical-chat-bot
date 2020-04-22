@@ -3,9 +3,7 @@ package io.project.edoctor.controller;
 import io.project.edoctor.model.Symptom;
 import io.project.edoctor.service.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SymptomController {
@@ -14,8 +12,8 @@ public class SymptomController {
     private SymptomService symptomService;
 
 
-    @PostMapping("/symptom/{id}")
-    public Symptom getSymptom(@RequestParam String id){
+    @GetMapping("/symptom/{id}")
+    public Symptom getSymptom(@PathVariable("id") String id){
 
         return symptomService.getSymptomById(id);
         
