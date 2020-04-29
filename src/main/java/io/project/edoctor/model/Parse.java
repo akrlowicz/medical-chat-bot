@@ -32,4 +32,12 @@ public class Parse {
     public void setObvious(boolean obvious) {
         this.obvious = obvious;
     }
+
+    @Override
+    public String toString() {
+        return "Parse{" +
+                "mentions=" + mentions +
+                ", obvious=" + obvious +
+                '}';
+    }
 }

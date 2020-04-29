@@ -33,7 +33,7 @@ public class DiagnosisService {
         ResponseEntity<DiagnosisResponse> response = this.restTemplate.postForEntity(url, request, DiagnosisResponse.class);
 
         // check response status code
-        if (response.getStatusCode() == HttpStatus.CREATED)
+        if (response.getStatusCode() == HttpStatus.OK)
             return response.getBody();
         else
             return null;
