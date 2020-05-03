@@ -1,4 +1,6 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.diagnosis;
+
+import io.project.edoctor.model.parse.Evidence;
 
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class DiagnosisRequest {
 
     private List<Evidence> evidence; //list of symptoms, risk factors and test results
 
+    private Object extras;
 
     public DiagnosisRequest() {
     }
@@ -18,6 +21,13 @@ public class DiagnosisRequest {
         this.sex = sex;
         this.age = age;
         this.evidence = evidence;
+    }
+
+    public DiagnosisRequest(String sex, int age, List<Evidence> evidence, Object extras) {
+        this.sex = sex;
+        this.age = age;
+        this.evidence = evidence;
+        this.extras = extras;
     }
 
     public String getSex() {
@@ -42,5 +52,13 @@ public class DiagnosisRequest {
 
     public void setEvidence(List<Evidence> evidence) {
         this.evidence = evidence;
+    }
+
+    public Object getExtras() {
+        return extras;
+    }
+
+    public void setExtras(Object extras) {
+        this.extras = extras;
     }
 }

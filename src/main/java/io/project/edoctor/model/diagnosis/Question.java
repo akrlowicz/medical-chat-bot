@@ -1,6 +1,7 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.diagnosis;
 
 import java.util.List;
+import java.util.Map;
 
 public class Question {
 
@@ -52,5 +53,15 @@ public class Question {
 
     public void setExtras(Object extras) {
         this.extras = extras;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "type='" + type + '\'' +
+                ", text='" + text + '\'' +
+                ", items=" + items +
+                ", extras=" + extras +
+                '}';
     }
 }

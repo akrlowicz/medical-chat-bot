@@ -1,8 +1,7 @@
 package io.project.edoctor.service;
 
-import io.project.edoctor.model.DiagnosisRequest;
-import io.project.edoctor.model.DiagnosisResponse;
-import org.apache.coyote.Response;
+import io.project.edoctor.model.diagnosis.DiagnosisRequest;
+import io.project.edoctor.model.diagnosis.DiagnosisResponse;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

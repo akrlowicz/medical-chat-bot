@@ -1,4 +1,4 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.diagnosis;
 
 import java.util.List;
 
@@ -42,5 +42,14 @@ public class Item {
 
     public void setChoices(List<Choices> choices) {
         this.choices = choices;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", choices=" + choices +
+                '}';
     }
 }

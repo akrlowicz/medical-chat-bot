@@ -1,4 +1,4 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.parse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -76,5 +76,17 @@ public class Mention {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Mention{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", commonName='" + commonName + '\'' +
+                ", orth='" + orth + '\'' +
+                ", choiceId='" + choiceId + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
 package io.project.edoctor.controller;
 
-import io.project.edoctor.model.Symptom;
+import io.project.edoctor.model.symptom.Symptom;
 import io.project.edoctor.service.SymptomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

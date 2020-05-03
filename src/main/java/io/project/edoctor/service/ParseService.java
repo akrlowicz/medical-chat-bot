@@ -1,6 +1,6 @@
 package io.project.edoctor.service;
 
-import io.project.edoctor.model.Parse;
+import io.project.edoctor.model.parse.Parse;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

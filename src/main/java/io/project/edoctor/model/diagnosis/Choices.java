@@ -1,4 +1,4 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.diagnosis;
 
 public class Choices {
 

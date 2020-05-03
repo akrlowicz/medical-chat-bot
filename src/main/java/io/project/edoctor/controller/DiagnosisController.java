@@ -1,7 +1,7 @@
 package io.project.edoctor.controller;
 
-import io.project.edoctor.model.DiagnosisRequest;
-import io.project.edoctor.model.DiagnosisResponse;
+import io.project.edoctor.model.diagnosis.DiagnosisRequest;
+import io.project.edoctor.model.diagnosis.DiagnosisResponse;
 import io.project.edoctor.service.DiagnosisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

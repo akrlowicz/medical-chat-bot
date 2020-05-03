@@ -1,4 +1,4 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.parse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -47,5 +47,14 @@ public class Evidence {
 
     public void setInitial(boolean initial) {
         this.initial = initial;
+    }
+
+    @Override
+    public String toString() {
+        return "Evidence{" +
+                "id='" + id + '\'' +
+                ", choiceId='" + choiceId + '\'' +
+                ", initial=" + initial +
+                '}';
     }
 }

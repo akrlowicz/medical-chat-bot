@@ -1,4 +1,4 @@
-package io.project.edoctor.model;
+package io.project.edoctor.model.diagnosis;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -47,7 +47,7 @@ public class DiagnosisResponse {
         this.conditions = conditions;
     }
 
-    public boolean isShouldStop() {
+    public boolean getShouldStop() {
         return shouldStop;
     }
 
@@ -61,5 +61,15 @@ public class DiagnosisResponse {
 
     public void setExtras(Object extras) {
         this.extras = extras;
+    }
+
+    @Override
+    public String toString() {
+        return "DiagnosisResponse{" +
+                "question=" + question +
+                ", conditions=" + conditions +
+                ", shouldStop=" + shouldStop +
+                ", extras=" + extras +
+                '}';
     }
 }

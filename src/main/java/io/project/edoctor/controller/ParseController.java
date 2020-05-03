@@ -1,6 +1,6 @@
 package io.project.edoctor.controller;
 
-import io.project.edoctor.model.Parse;
+import io.project.edoctor.model.parse.Parse;
 import io.project.edoctor.service.ParseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
