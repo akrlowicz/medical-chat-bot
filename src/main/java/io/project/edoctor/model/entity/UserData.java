@@ -72,4 +72,17 @@ public class UserData {
     public void setUserData(User userData) {
         this.userData = userData;
     }
+
+    public int getAge () {
+
+        LocalDate now = LocalDate.now();
+
+        int ageValue = now.getYear() - birth.getYear();
+
+        if (now.getDayOfYear() < birth.getDayOfYear()) {
+            ageValue = ageValue-1;
+        }
+
+        return ageValue;
+    }
 }

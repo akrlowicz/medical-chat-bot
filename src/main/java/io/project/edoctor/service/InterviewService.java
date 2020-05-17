@@ -2,15 +2,19 @@ package io.project.edoctor.service;
 
 
 import io.project.edoctor.model.diagnosis.*;
+import io.project.edoctor.model.entity.User;
+import io.project.edoctor.model.entity.UserDiagnosis;
+import io.project.edoctor.model.entity.UserInterview;
 import io.project.edoctor.model.parse.Evidence;
 import io.project.edoctor.model.parse.Mention;
 import io.project.edoctor.model.parse.Parse;
+import io.project.edoctor.repository.UserDiagnosisRepository;
+import io.project.edoctor.repository.UserInterviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class InterviewService {
@@ -20,6 +24,13 @@ public class InterviewService {
     @Autowired
     DiagnosisService diagnosisService;
 
+    @Autowired
+    UserInterviewRepository userInterviewRepository;
+
+    @Autowired
+    UserDiagnosisRepository userDiagnosisRepository;
+
+    private User user;
     private String sex;
     private int age;
 
@@ -35,32 +46,16 @@ public class InterviewService {
     private boolean isItQuestionTime;
     private boolean isInterviewFinished;
 
-    public String getSex() {
-        return sex;
+    public User getUser() {
+        return user;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public List<Evidence> getEvidences() {
-        return evidences;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setEvidences(List<Evidence> evidences) {
         this.evidences = evidences;
-    }
-
-    public List<Mention> getMentionList() {
-        return mentionList;
     }
 
     public void setMentionList(List<Mention> mentionList) {
@@ -123,16 +118,23 @@ public class InterviewService {
             return diagnosisResponse();
 
         } else {
-            Mention m = mentionList.get(0);
-            return "Did you mean "
-                    + m.getChoiceId() + " "
-                    + m.getCommonName().toLowerCase() + "? Yes/No";
+            if (!mentionList.isEmpty()) {
+                Mention m = mentionList.get(0);
+                return "Did you mean "
+                        + m.getChoiceId() + " "
+                        + m.getCommonName().toLowerCase() + "? Yes/No";
+            }
+            else  {
+                return "Unfortunately, your symptoms are incomprehensible. Try to write what is wrong with other words.";
+            }
         }
     }
 
     private String diagnosisResponse() {
         if (isItFirstRequest) {
             isItFirstRequest = false;
+            sex = user.getUserData().getGender().toLowerCase();
+            age = user.getUserData().getAge();
             disableGroups.clear();
             disableGroups.put("disable_groups", true);
 
@@ -186,13 +188,28 @@ public class InterviewService {
     private String getFinalDiagnosis() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("Your illness is most likely:");
+        UserInterview userInterview = new UserInterview();
+        userInterview.setDate(LocalDate.now());
+        userInterview.setUser(user);
+        //Set<UserDiagnosis> userDiagnoses = new HashSet<>();
+        //userInterview.setDiagnoses(userDiagnoses);
+        userInterviewRepository.save(userInterview);
 
+        stringBuilder.append("Your illness is most likely:");
         List<Condition> conditions = diagnosisResponse.getConditions();
 
-        for (Condition c : conditions)
+        for (Condition c : conditions) {
             stringBuilder.append("\n" + c.getCommonName() + ", probability: " + c.getProbability());
 
+            UserDiagnosis d = new UserDiagnosis();
+            d.setName(c.getCommonName());
+            d.setProbability(c.getProbability());
+            d.setInterview(userInterview);
+            userDiagnosisRepository.save(d);
+            //userDiagnoses.add(d);
+        }
+
+        //userInterview.setDiagnoses(userDiagnoses);
         return stringBuilder.toString();
     }
 

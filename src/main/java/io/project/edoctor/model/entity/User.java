@@ -1,6 +1,7 @@
 package io.project.edoctor.model.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User  {
@@ -15,9 +16,11 @@ public class User  {
 
     private String role;
 
-
     @OneToOne(mappedBy = "userData")
     private UserData userData;
+
+    @OneToMany
+    private Set<UserInterview> interviews;
 
     public User() {
     }
@@ -60,6 +63,14 @@ public class User  {
 
     public void setUserData(UserData userData) {
         this.userData = userData;
+    }
+
+    public Set<UserInterview> getInterviews() {
+        return interviews;
+    }
+
+    public void setInterviews(Set<UserInterview> interviews) {
+        this.interviews = interviews;
     }
 }
 

@@ -41,6 +41,7 @@ public class InterviewController {
 
         User user = userService.findByEmail(auth.getName());
         name = "You"; // NIE MA W BAZIE DANYCH O IMIENIU I NAZWISKU !!
+        interviewService.setUser(user);
 
         interviewService.setMentionList(new ArrayList<>());
         interviewService.setEvidences(new ArrayList<>());
@@ -48,9 +49,6 @@ public class InterviewController {
         interviewService.setItFirstTextMessage(true);
         interviewService.setItQuestionTime(false);
         interviewService.setInterviewFinished(false);
-
-        interviewService.setSex(user.getUserData().getGender().toLowerCase());
-        interviewService.setAge(calculateAge(user));
 
         model.addAttribute("showButton", true);
         model.addAttribute("userMessage", new Message());
@@ -74,19 +72,4 @@ public class InterviewController {
 
         return "chat";
     }
-
-    private int calculateAge (User user) {
-
-        LocalDate date = user.getUserData().getBirth();
-        LocalDate now = LocalDate.now();
-
-        int ageValue = now.getYear() - date.getYear();
-
-        if (now.getDayOfYear() < date.getDayOfYear()) {
-            ageValue = ageValue-1;
-        }
-
-        return ageValue;
-    }
-
 }
