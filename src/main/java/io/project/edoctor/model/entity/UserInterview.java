@@ -17,8 +17,8 @@ public class UserInterview {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @OneToMany
-    private Set<UserDiagnosis> diagnoses;
+    //@OneToMany
+    //private Set<UserDiagnosis> diagnoses;
 
     public Integer getId() {
         return id;
@@ -44,6 +44,7 @@ public class UserInterview {
         this.user = user;
     }
 
+    /**
     public Set<UserDiagnosis> getDiagnoses() {
         return diagnoses;
     }
@@ -51,4 +52,5 @@ public class UserInterview {
     public void setDiagnoses(Set<UserDiagnosis> diagnoses) {
         this.diagnoses = diagnoses;
     }
+     **/
 }

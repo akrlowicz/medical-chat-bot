@@ -125,6 +125,7 @@ public class InterviewService {
                         + m.getCommonName().toLowerCase() + "? Yes/No";
             }
             else  {
+                isItFirstTextMessage = true;
                 return "Unfortunately, your symptoms are incomprehensible. Try to write what is wrong with other words.";
             }
         }

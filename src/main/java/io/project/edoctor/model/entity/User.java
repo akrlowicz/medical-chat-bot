@@ -19,8 +19,8 @@ public class User  {
     @OneToOne(mappedBy = "userData")
     private UserData userData;
 
-    @OneToMany
-    private Set<UserInterview> interviews;
+    //@OneToMany
+    //private Set<UserInterview> interviews;
 
     public User() {
     }
@@ -65,6 +65,7 @@ public class User  {
         this.userData = userData;
     }
 
+    /**
     public Set<UserInterview> getInterviews() {
         return interviews;
     }
@@ -72,5 +73,6 @@ public class User  {
     public void setInterviews(Set<UserInterview> interviews) {
         this.interviews = interviews;
     }
+    **/
 }
 

@@ -1,7 +1,6 @@
 package io.project.edoctor.model.entity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 public class UserDiagnosis {
