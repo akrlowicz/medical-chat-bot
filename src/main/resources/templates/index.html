@@ -15,8 +15,22 @@
 <link rel="stylesheet" th:href="@{/css/main.css}">
 
 </head>
+<style type="text/css">
+    div.a {
+        text-align: justify;
+    }
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+</style>
 <body>
 
+
+</div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -38,12 +52,51 @@
     </div>
 </nav>
 
-<div class="container">
-    <h2>Jazda jazda, biała gwiazda</h2>
+</div>
+<div class="jumbotron">
+    <div class="container a" >
+<!--        <p>-->
+<!--            Welcome <span sec:authentication="principal.username"></span>-->
+<!--       nie widzi usera      </p>-->
 
-    <p>
-        Welcome <span sec:authentication="principal.username"></span>
-    </p>
+
+        <h2 class="text-center">Now you have access to preliminary medical diagnosis that can help you verify your symptoms and take better care of your health. Feel free to try. </h2>
+
+    </div>
+</div>
+
+
+<center><img class="rounded-circle" src="img/nurse.jpg" alt="nurse" width="500">
+</center>
+
+
+<h4 class="text-center"> About app </h4>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Results</h2>
+            <p>Don't worry about forgetting your diagnosis.
+                The data is saved and the users are encrypted,
+                so the whole process is safe. The diagnosis is
+                always available to you from the database.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>How to use</h2>
+            <p>It's very simple. Just write your symptoms in a chatbox like you tell the doctor.
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Lack of medical nomenclature? </h2>
+            Use natural language! We have a custom natural language processing technology that
+            allows applications to understand the clinical concepts
+            (symptoms and risk factors) listed by users as natural language text.
+            </p>
+        </div>
+    </div>
 </div>
 
 
