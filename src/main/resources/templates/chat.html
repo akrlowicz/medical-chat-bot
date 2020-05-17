@@ -60,9 +60,10 @@
                         <form th:action="@{/chat}" th:object="${userMessage}" method="post">
                         <div class="form-group input-group">
                             <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." th:field="*{value}"/>
-                            <span class="input-group-btn">
+                            <span class="input-group-btn" th:if="${showButton}">
                             <button class="btn btn-warning btn-sm" id="btn-chat" type="submit">
                                 Send</button>
+                            <span/>
                         </span>
                         </div>
                         </form>
