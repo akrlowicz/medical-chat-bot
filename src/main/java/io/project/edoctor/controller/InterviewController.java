@@ -40,7 +40,7 @@ public class InterviewController {
         messages.add(new Message(botName, firstMessage));
 
         User user = userService.findByEmail(auth.getName());
-        name = "You"; // NIE MA W BAZIE DANYCH O IMIENIU I NAZWISKU !!
+        name = user.getUserData().getName();
         interviewService.setUser(user);
 
         interviewService.setMentionList(new ArrayList<>());

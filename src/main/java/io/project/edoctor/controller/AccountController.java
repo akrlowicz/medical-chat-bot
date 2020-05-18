@@ -59,6 +59,7 @@ public class AccountController {
 
 
         UserData userData = new UserData();
+        userData.setName(userForm.getName());
         userData.setBirth(userForm.getBirth());
         userData.setGender(userForm.getGender());
         userData.setHeight(userForm.getHeight());

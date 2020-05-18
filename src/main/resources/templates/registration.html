@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 
     <meta charset="utf-8">
@@ -9,47 +9,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">
+    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
 
-    <style type="text/css">
-        body {
-            color: #656673;
-            background: #f5f5f5;
-            font-family: 'Varela Round', sans-serif;
-        }
-        .form-control {
-            box-shadow: none;
-            border-color: rgb(15, 64, 106);
-        }
-        .form-control:focus {
-            border-color: #4aba70;
-        }
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 
-    </style>
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.8/css/all.css}">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">
+
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">E-Doctor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="container">
-    <br>  <p class="text-center" style="color:black;">E-doctor</p>
-    <hr>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{/chat}">Chatbot</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></a>
 
-    <div class="card bg-light">
-        <article class="card-body mx-auto" style="max-width: 400px;">
-            <h4 style="color:black;" class="card-title mt-3 text-center ">Create Account</h4>
-            <p class="text-center">Register to have access to the diagnosis tool</p>
+            </li>
+        </ul>
 
+    </div>
+</nav>
+
+   <div id="qbootstrap-contact">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center qbootstrap-heading">
+                <h2>Register account</h2>
+                <p>Register to have access to our diagnosis tool.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
             <form th:action="@{/registration}" th:object="${userForm}" method="post" class="form-signin">
 
                 <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
                    th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
                     error</p>
 
-                <div class="form-group input-group " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
+                <div class="form-group  " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
@@ -60,7 +80,7 @@
                        th:text="${error}">Validation error</p>
                 </div>
 
-                <div class="form-group input-group" th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                <div class="form-group " th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
@@ -71,7 +91,7 @@
                        th:text="${error}">Validation error</p>
                 </div>
 
-                <div class="form-group input-group" th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
+                <div class="form-group " th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
@@ -82,7 +102,7 @@
                        th:text="${error}">Validation error</p>
                 </div>
 
-                <div class="form-group input-group" th:classappend="${#fields.hasErrors('birth')}? 'has-error':''">
+                <div class="form-group " th:classappend="${#fields.hasErrors('birth')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
                     </div>
@@ -93,7 +113,7 @@
                        th:text="${error}">Validation error</p>
                 </div>
 
-                <div class="form-group input-group" th:classappend="${#fields.hasErrors('gender')}? 'has-error':''">
+                <div class="form-group " th:classappend="${#fields.hasErrors('gender')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <input type="radio" th:field="*{gender}" value="Male"/>     Male
 
@@ -105,7 +125,7 @@
                     </div>
                 </div>
 
-                <div class="form-group input-group"  th:classappend="${#fields.hasErrors('height')}? 'has-error':''">
+                <div class="form-group "  th:classappend="${#fields.hasErrors('height')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-male"></i> </span>
                     </div>
@@ -117,7 +137,7 @@
                 </div>
 
 
-                <div class="form-group input-group"
+                <div class="form-group "
                      th:classappend="${#fields.hasErrors('weight')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-male"></i> </span>
@@ -136,15 +156,19 @@
                                     here</a></span>
 
             </form>
-        </article>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
 
 <br><br>
-<article class="bg-secondary mb-3">
-    <div class="card-body text-center">
-        <h3 class="text-white mt-3">Remote diagnosis platform</h3>
-    </div>
-    <br><br>
-</article>
+<!--<article class="bg-secondary mb-3">-->
+<!--    <div class="card-body text-center">-->
+<!--        <h3 class="text-white mt-3">Remote diagnosis platform</h3>-->
+<!--    </div>-->
+<!--    <br><br>-->
+<!--</article>-->
+
+</body>
+</html>

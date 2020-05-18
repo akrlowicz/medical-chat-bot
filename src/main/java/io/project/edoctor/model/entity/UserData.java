@@ -10,6 +10,8 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    private String name;
+
     private LocalDate birth;
 
     private String gender;
@@ -31,6 +33,14 @@ public class UserData {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getBirth() {
