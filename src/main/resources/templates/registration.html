@@ -6,37 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" >
 
-
-    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
-    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">
-    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
-
+<!--    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">-->
+<!--    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">-->
+<!--    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">-->
+<!--    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >-->
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >-->
     <link rel="stylesheet" th:href="@{/css/main.css}">
-
+<!--    to jest od ikonek-->
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.8/css/all.css}">
-
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">-->
+    <style type="text/css">
+        .register {
+            position: relative;
+            /*max-width: 800px;*/
+            margin: 0 auto;
+            position: absolute;
+        }
+
+    </style>
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">E-Doctor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-doctor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#" th:href="@{/index}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" th:href="@{/chat}">Chatbot</a>
@@ -45,24 +49,25 @@
                 <a class="nav-link" href="#" th:href="@{/login}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></a>
-
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
             </li>
         </ul>
 
     </div>
 </nav>
 
-   <div id="qbootstrap-contact">
-    <div class="container">
-        <div class="row animate-box">
-            <div class="col-md-6 col-md-offset-3 text-center qbootstrap-heading">
-                <h2>Register account</h2>
-                <p>Register to have access to our diagnosis tool.</p>
-            </div>
 
+
+
+
+
+
+<h2>Register account</h2>
+<p>Register to have access to our diagnosis tool.</p>
+
+
+    <center><div class="register">
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
             <form th:action="@{/registration}" th:object="${userForm}" method="post" class="form-signin">
 
                 <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
@@ -73,7 +78,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input type="text"  class="form-control" placeholder="Name and surname"
+                    <input size="70" type="text"  class="form-control" placeholder="Name and surname"
                            autofocus="true" th:field="*{name}">
                     <p class="error-message"
                        th:each="error: ${#fields.errors('name')}"
@@ -84,7 +89,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                     </div>
-                    <input ntype="email"  class="form-control" placeholder="Email"
+                    <input size="70" type="email"  class="form-control" placeholder="Email"
                            autofocus="true" th:field="*{email}">
                     <p class="error-message"
                        th:each="error: ${#fields.errors('email')}"
@@ -95,7 +100,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password"
+                    <input size="70" type="password" class="form-control" placeholder="Password"
                            autofocus="true" th:field="*{password}"/>
                     <p class="error-message"
                        th:each="error: ${#fields.errors('password')}"
@@ -106,7 +111,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
                     </div>
-                    <input type="date" class="form-control" placeholder="Date of birth"
+                    <input size="70" type="date" class="form-control" placeholder="Date of birth"
                            autofocus="true" th:field="*{birth}"/>
                     <p class="error-message"
                        th:each="error: ${#fields.errors('birth')}"
@@ -129,7 +134,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-male"></i> </span>
                     </div>
-                    <input type="number"  class="form-control" placeholder="Height"
+                    <input size="70" type="number"  class="form-control" placeholder="Height"
                            autofocus="true" th:field="*{height}">
                     <p class="error-message"
                        th:each="error: ${#fields.errors('height')}"
@@ -142,7 +147,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-male"></i> </span>
                     </div>
-                    <input type="number"  class="form-control" placeholder="Weight"
+                    <input size="70" type="number"  class="form-control" placeholder="Weight"
                                   autofocus="true" th:field="*{weight}"/>
                     <p class="error-message"
                        th:each="error: ${#fields.errors('weight')}"
@@ -156,11 +161,11 @@
                                     here</a></span>
 
             </form>
-                </div>
+
             </div>
-        </div>
-    </div>
-</div>
+
+    </div></center>
+
 
 <br><br>
 <!--<article class="bg-secondary mb-3">-->
