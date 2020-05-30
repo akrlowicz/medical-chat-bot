@@ -31,7 +31,8 @@ public class InterviewController {
 
     private List<Message> messages = new ArrayList<>();
 
-    private String name = "You";
+    private String name;
+    private String sex;
 
     @GetMapping("/chat")
     public String showChat(Model model, Authentication auth) {
@@ -41,6 +42,7 @@ public class InterviewController {
 
         User user = userService.findByEmail(auth.getName());
         name = user.getUserData().getName();
+        sex = user.getUserData().getGender();
         interviewService.setUser(user);
 
         interviewService.setMentionList(new ArrayList<>());
@@ -53,6 +55,8 @@ public class InterviewController {
         interviewService.setInterviewFinished(false);
 
         model.addAttribute("inputType", 1);
+        model.addAttribute("botName", botName);
+        model.addAttribute("userSex", sex);
         model.addAttribute("userMessage", new Message());
         model.addAttribute("messages", messages);
 
@@ -64,6 +68,8 @@ public class InterviewController {
         userMessage.setSender(name);
         messages.add(userMessage);
         model.addAttribute("userMessage", new Message());
+        model.addAttribute("botName", botName);
+        model.addAttribute("userSex", sex);
 
         String answer = interviewService.getBotAnswer(userMessage.getValue());
 

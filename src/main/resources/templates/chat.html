@@ -53,17 +53,45 @@
 
                 <div class="panel" id="collapseOne">
                     <div class="panel-body">
-                        <ul class="chat" th:each="m : ${messages}">
-                            <li class="left clearfix">
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                        <ul class="chat" th:each="m : ${messages}" th:switch="${m.getSender()}">
+
+                            <li th:case="${botName}" class="left clearfix" >
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <img th:src="@{/img/bot.jpg}" alt="bot" class="chat-img" >
                                     </div>
-                                    <p>
-                                        <span th:text="${m.getValue()}" />
-                                    </p>
+                                    <div class="col-sm-10">
+                                        <div class="chat-body message-left clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                                            </div>
+                                            <p>
+                                                <span th:text="${m.getValue()}" />
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
+
+                            <li th:case="*" class="right clearfix" >
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <div class="chat-body message-right clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                                            </div>
+                                            <p class="right">
+                                                <span th:text="${m.getValue()}" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img th:if="${userSex == 'Female'}" th:src="@{/img/female.jpg}" alt="female" class="chat-img" >
+                                        <img th:unless="${userSex == 'Female'}" th:src="@{/img/male.jpg}" alt="male" class="chat-img">
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
 
@@ -74,7 +102,7 @@
                             <span th:case="1">
                                 <form th:action="@{/chat}" th:object="${userMessage}" method="post">
                                     <div class="form-group input-group">
-                                        <input type="text" class="form-control input-sm" placeholder="Type your message here..." th:field="*{value}"/>
+                                        <input type="text" class="form-control input-sm margin-right-15" placeholder="Type your message here..." th:field="*{value}" autofocus="true"/>
                                         <button class="btn btn-warning btn-sm" type="submit">Send</button>
                                     </div>
                                 </form>
@@ -82,9 +110,9 @@
 
                             <span th:case="2">
                                 <form th:action="@{/chat}" th:object="${userMessage}" method="post">
-                                    <div class="form-group input-group">
-                                        <span th:each="a : ${answers}">
-                                            <input type="radio" class="form-control input-sm" name="answer"  th:value="${a}" th:field="*{value}"/> <span th:text="${a}"></span><br/>
+                                    <div class="form-group input-group" style="display: flex; justify-content: flex-end">
+                                        <span class="margin-right-15" th:each="a : ${answers}">
+                                            <input type="radio" name="answer" class="answer"  th:value="${a}" th:field="*{value}" th:text="${a}"/>
                                         </span>
                                         <button class="btn btn-warning btn-sm" type="submit">Send</button>
                                     </div>
