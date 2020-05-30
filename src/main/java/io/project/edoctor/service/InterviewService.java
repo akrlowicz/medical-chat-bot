@@ -11,6 +11,7 @@ import io.project.edoctor.model.parse.Parse;
 import io.project.edoctor.repository.UserDiagnosisRepository;
 import io.project.edoctor.repository.UserInterviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -192,10 +193,10 @@ public class InterviewService {
         UserInterview userInterview = new UserInterview();
         userInterview.setDate(LocalDate.now());
         userInterview.setUser(user);
-        //Set<UserDiagnosis> userDiagnoses = new HashSet<>();
+        //List<UserDiagnosis> userDiagnoses = new ArrayList<>();
         //userInterview.setDiagnoses(userDiagnoses);
-        userInterviewRepository.save(userInterview);
 
+        userInterviewRepository.save(userInterview);
         stringBuilder.append("Your illness is most likely:");
         List<Condition> conditions = diagnosisResponse.getConditions();
 
@@ -206,9 +207,11 @@ public class InterviewService {
             d.setName(c.getCommonName());
             d.setProbability(c.getProbability());
             d.setInterview(userInterview);
+
             userDiagnosisRepository.save(d);
             //userDiagnoses.add(d);
         }
+        //userInterview.setUserDiagnoses(userDiagnoses);
 
         //userInterview.setDiagnoses(userDiagnoses);
         return stringBuilder.toString();
@@ -248,5 +251,9 @@ public class InterviewService {
         else {
             return reactForAnswerForAQuestion(userMessage);
         }
+    }
+
+    public UserInterview findById(Integer id) throws Exception {
+        return userInterviewRepository.findById(id).orElseThrow(Exception::new);
     }
 }

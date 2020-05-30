@@ -13,9 +13,9 @@ public class UserDiagnosis {
 
     private Double probability;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "interview_id", referencedColumnName = "id")
-    private UserInterview interview;
+    private UserInterview userInterview;
 
     public Integer getId() {
         return id;
@@ -39,13 +39,15 @@ public class UserDiagnosis {
 
     public void setProbability(Double probability) {
         this.probability = probability;
+
     }
 
     public UserInterview getInterview() {
-        return interview;
+        return userInterview;
     }
 
     public void setInterview(UserInterview interview) {
-        this.interview = interview;
+        this.userInterview = interview;
+        //interview.getUserDiagnoses().add(this);
     }
 }

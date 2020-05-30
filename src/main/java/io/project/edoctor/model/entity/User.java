@@ -1,6 +1,7 @@
 package io.project.edoctor.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,8 +20,13 @@ public class User  {
     @OneToOne(mappedBy = "userData")
     private UserData userData;
 
-    //@OneToMany
-    //private Set<UserInterview> interviews;
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
+    )
+    private List<UserInterview> userInterviews;
+
 
     public User() {
     }
@@ -65,14 +71,17 @@ public class User  {
         this.userData = userData;
     }
 
-    /**
-    public Set<UserInterview> getInterviews() {
-        return interviews;
+
+    public List<UserInterview> getInterviews() {
+        return userInterviews;
     }
 
-    public void setInterviews(Set<UserInterview> interviews) {
-        this.interviews = interviews;
+    public void setInterviews(List<UserInterview> userInterviews) {
+        this.userInterviews = userInterviews;
+        for (UserInterview userInterview:userInterviews) {
+            userInterview.setUser(this);
+        }
     }
-    **/
+
 }
 
