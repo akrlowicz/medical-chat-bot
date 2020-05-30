@@ -31,7 +31,7 @@ public class InterviewController {
 
     private List<Message> messages = new ArrayList<>();
 
-    private String name;
+    private String name = "You";
 
     @GetMapping("/chat")
     public String showChat(Model model, Authentication auth) {
@@ -50,7 +50,7 @@ public class InterviewController {
         interviewService.setItQuestionTime(false);
         interviewService.setInterviewFinished(false);
 
-        model.addAttribute("showButton", true);
+        model.addAttribute("inputType", 1);
         model.addAttribute("userMessage", new Message());
         model.addAttribute("messages", messages);
 
@@ -68,7 +68,12 @@ public class InterviewController {
         messages.add(new Message(botName, answer));
         model.addAttribute("messages", messages);
 
-        model.addAttribute("showButton", !interviewService.isInterviewFinished());
+        if (interviewService.isInterviewFinished())
+            model.addAttribute("inputType", 4);
+        else if (interviewService.isItQuestionTime())
+            model.addAttribute("inputType", 3);
+        else
+            model.addAttribute("inputType", 1);
 
         return "chat";
     }
