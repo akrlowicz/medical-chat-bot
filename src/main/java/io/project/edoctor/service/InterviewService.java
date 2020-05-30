@@ -41,9 +41,11 @@ public class InterviewService {
     private Map<String, Boolean> disableGroups = new HashMap<>();
     private DiagnosisResponse diagnosisResponse;
     private Question question;
+    private List<String> possibleAnswers;
 
     private boolean isItFirstRequest;
     private boolean isItFirstTextMessage;
+    private boolean isItYesNoQuestion;
     private boolean isItQuestionTime;
     private boolean isInterviewFinished;
 
@@ -95,6 +97,22 @@ public class InterviewService {
         isInterviewFinished = interviewFinished;
     }
 
+    public boolean isItYesNoQuestion() {
+        return isItYesNoQuestion;
+    }
+
+    public void setItYesNoQuestion(boolean itYesNoQuestion) {
+        isItYesNoQuestion = itYesNoQuestion;
+    }
+
+    public List<String> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public void setPossibleAnswers(List<String> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
+    }
+
     private Map getMentionsMap(String mentions) {
 
         Map<String, String> map = new HashMap<String, String>();
@@ -121,9 +139,13 @@ public class InterviewService {
         } else {
             if (!mentionList.isEmpty()) {
                 Mention m = mentionList.get(0);
+                isItYesNoQuestion = true;
+                possibleAnswers.clear();
+                possibleAnswers.add("Yes");
+                possibleAnswers.add("No");
                 return "Did you mean "
                         + m.getChoiceId() + " "
-                        + m.getCommonName().toLowerCase() + "? Yes/No";
+                        + m.getCommonName().toLowerCase() + "?";
             }
             else  {
                 isItFirstTextMessage = true;
@@ -149,6 +171,7 @@ public class InterviewService {
         if (!diagnosisResponse.getShouldStop()) {
 
             if (!isItQuestionTime) {
+                isItYesNoQuestion = false;
                 isItFirstTextMessage = true;
                 return "What else would you like to report? Type 'nothing' if you do not know.";
             }
@@ -164,16 +187,15 @@ public class InterviewService {
     }
 
     private String printQuestion() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(question.getText() + " ");
 
+        possibleAnswers.clear();
         for (Item item: question.getItems()) {
             for (Choices choice: item.getChoices()) {
-                stringBuilder.append(choice.getLabel() + "/");
+                possibleAnswers.add(choice.getLabel());
             }
         }
 
-        return stringBuilder.toString();
+        return question.getText();
     }
 
     private String reactForAnswerForAQuestion(String userMessage) {
