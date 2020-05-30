@@ -6,6 +6,7 @@
     <title>E-doctor</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
     <script th:src="@{/js/modernizr-2.6.2.min.js}"></script>
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
     <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
@@ -21,10 +22,10 @@
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link"  th:href="@{/index}">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" th:href="@{/chat}">Chatbot</a>
             </li>
             <li class="nav-item">
@@ -52,30 +53,78 @@
 
                 <div class="panel" id="collapseOne">
                     <div class="panel-body">
-                        <ul class="chat" th:each="m : ${messages}">
-                            <li class="left clearfix">
-                                <div class="chat-body clearfix">
-                                    <div class="header">
-                                        <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                        <ul class="chat" th:each="m : ${messages}" th:switch="${m.getSender()}">
+
+                            <li th:case="${botName}" class="left clearfix" >
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <img th:src="@{/img/bot.jpg}" alt="bot" class="chat-img" >
                                     </div>
-                                    <p>
-                                        <span th:text="${m.getValue()}" />
-                                    </p>
+                                    <div class="col-sm-10">
+                                        <div class="chat-body message-left clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                                            </div>
+                                            <p>
+                                                <span th:text="${m.getValue()}" />
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
+
+                            <li th:case="*" class="right clearfix" >
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <div class="chat-body message-right clearfix">
+                                            <div class="header">
+                                                <strong class="primary-font"><span th:text="${m.getSender()}" /></strong>
+                                            </div>
+                                            <p class="right">
+                                                <span th:text="${m.getValue()}" />
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img th:if="${userSex == 'Female'}" th:src="@{/img/female.jpg}" alt="female" class="chat-img" >
+                                        <img th:unless="${userSex == 'Female'}" th:src="@{/img/male.jpg}" alt="male" class="chat-img">
+                                    </div>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
+
                     <div class="panel-footer">
-                        <form th:action="@{/chat}" th:object="${userMessage}" method="post">
-                        <div class="form-group input-group">
-                            <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." th:field="*{value}"/>
-                            <span class="input-group-btn" th:if="${showButton}">
-                            <button class="btn btn-warning btn-sm" id="btn-chat" type="submit">
-                                Send</button>
-                            <span/>
+
+                        <span th:switch="${inputType}">
+
+                            <span th:case="1">
+                                <form th:action="@{/chat}" th:object="${userMessage}" method="post">
+                                    <div class="form-group input-group">
+                                        <input type="text" class="form-control input-sm margin-right-15" placeholder="Type your message here..." th:field="*{value}" autofocus="true"/>
+                                        <button class="btn btn-warning btn-sm" type="submit">Send</button>
+                                    </div>
+                                </form>
+                            </span>
+
+                            <span th:case="2">
+                                <form th:action="@{/chat}" th:object="${userMessage}" method="post">
+                                    <div class="form-group input-group" style="display: flex; justify-content: flex-end">
+                                        <span class="margin-right-15" th:each="a : ${answers}">
+                                            <input type="radio" name="answer" class="answer"  th:value="${a}" th:field="*{value}" th:text="${a}"/>
+                                        </span>
+                                        <button class="btn btn-warning btn-sm" type="submit">Send</button>
+                                    </div>
+                                </form>
+                            </span>
+
+                            <span th:case="*">
+                                <p>Thank you for interview! Your diagnosis is saved, you can check it in your user panel.</p>
+                            </span>
+
                         </span>
-                        </div>
-                        </form>
+
                     </div>
                 </div>
             </div>

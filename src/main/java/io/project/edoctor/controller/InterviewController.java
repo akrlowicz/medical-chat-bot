@@ -32,6 +32,7 @@ public class InterviewController {
     private List<Message> messages = new ArrayList<>();
 
     private String name;
+    private String sex;
 
     @GetMapping("/chat")
     public String showChat(Model model, Authentication auth) {
@@ -41,16 +42,21 @@ public class InterviewController {
 
         User user = userService.findByEmail(auth.getName());
         name = user.getUserData().getName();
+        sex = user.getUserData().getGender();
         interviewService.setUser(user);
 
         interviewService.setMentionList(new ArrayList<>());
         interviewService.setEvidences(new ArrayList<>());
+        interviewService.setPossibleAnswers(new ArrayList<>());
         interviewService.setItFirstRequest(true);
         interviewService.setItFirstTextMessage(true);
+        interviewService.setItYesNoQuestion(false);
         interviewService.setItQuestionTime(false);
         interviewService.setInterviewFinished(false);
 
-        model.addAttribute("showButton", true);
+        model.addAttribute("inputType", 1);
+        model.addAttribute("botName", botName);
+        model.addAttribute("userSex", sex);
         model.addAttribute("userMessage", new Message());
         model.addAttribute("messages", messages);
 
@@ -62,13 +68,24 @@ public class InterviewController {
         userMessage.setSender(name);
         messages.add(userMessage);
         model.addAttribute("userMessage", new Message());
+        model.addAttribute("botName", botName);
+        model.addAttribute("userSex", sex);
 
         String answer = interviewService.getBotAnswer(userMessage.getValue());
 
         messages.add(new Message(botName, answer));
         model.addAttribute("messages", messages);
 
-        model.addAttribute("showButton", !interviewService.isInterviewFinished());
+        if (interviewService.isInterviewFinished()) {
+            model.addAttribute("inputType", 3);
+        }
+        else if (interviewService.isItYesNoQuestion() || interviewService.isItQuestionTime()) {
+            model.addAttribute("inputType", 2);
+            model.addAttribute("answers", interviewService.getPossibleAnswers());
+        }
+        else {
+            model.addAttribute("inputType", 1);
+        }
 
         return "chat";
     }
