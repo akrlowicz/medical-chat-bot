@@ -2,6 +2,7 @@ package io.project.edoctor.model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,12 +14,16 @@ public class UserInterview {
 
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    //@OneToMany
-    //private Set<UserDiagnosis> diagnoses;
+    @OneToMany(
+            mappedBy = "userInterview",
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY
+    )
+    private List<UserDiagnosis> userDiagnoses;
 
     public Integer getId() {
         return id;
@@ -42,15 +47,16 @@ public class UserInterview {
 
     public void setUser(User user) {
         this.user = user;
+        user.getInterviews().add(this);
     }
 
-    /**
-    public Set<UserDiagnosis> getDiagnoses() {
-        return diagnoses;
+    public List<UserDiagnosis> getUserDiagnoses() {
+        return userDiagnoses;
     }
 
-    public void setDiagnoses(Set<UserDiagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
+    public void setUserDiagnoses(List<UserDiagnosis> userDiagnoses) {
+        this.userDiagnoses = userDiagnoses;
+        for(UserDiagnosis userDiagnosis: userDiagnoses)
+            userDiagnosis.setInterview(this);
     }
-     **/
 }

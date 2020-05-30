@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 @Component
-public class SimpleChat implements CommandLineRunner {
+public class SimpleChat {
 
     @Autowired
     ParseService parseService;
@@ -96,7 +96,7 @@ public class SimpleChat implements CommandLineRunner {
     }
 
 
-    @Override
+
     public void run(String... args) throws Exception {
 
 
