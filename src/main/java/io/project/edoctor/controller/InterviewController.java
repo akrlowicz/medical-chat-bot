@@ -45,8 +45,10 @@ public class InterviewController {
 
         interviewService.setMentionList(new ArrayList<>());
         interviewService.setEvidences(new ArrayList<>());
+        interviewService.setPossibleAnswers(new ArrayList<>());
         interviewService.setItFirstRequest(true);
         interviewService.setItFirstTextMessage(true);
+        interviewService.setItYesNoQuestion(false);
         interviewService.setItQuestionTime(false);
         interviewService.setInterviewFinished(false);
 
@@ -68,12 +70,16 @@ public class InterviewController {
         messages.add(new Message(botName, answer));
         model.addAttribute("messages", messages);
 
-        if (interviewService.isInterviewFinished())
-            model.addAttribute("inputType", 4);
-        else if (interviewService.isItQuestionTime())
+        if (interviewService.isInterviewFinished()) {
             model.addAttribute("inputType", 3);
-        else
+        }
+        else if (interviewService.isItYesNoQuestion() || interviewService.isItQuestionTime()) {
+            model.addAttribute("inputType", 2);
+            model.addAttribute("answers", interviewService.getPossibleAnswers());
+        }
+        else {
             model.addAttribute("inputType", 1);
+        }
 
         return "chat";
     }

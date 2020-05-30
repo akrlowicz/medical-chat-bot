@@ -6,7 +6,7 @@
     <title>E-doctor</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
-
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
     <script th:src="@{/js/modernizr-2.6.2.min.js}"></script>
 </head>
 <body>
@@ -80,12 +80,12 @@
                                 </form>
                             </span>
 
-                            <span th:case="3">
+                            <span th:case="2">
                                 <form th:action="@{/chat}" th:object="${userMessage}" method="post">
                                     <div class="form-group input-group">
-                                        <input type="radio" class="form-control input-sm" name="answer"  value="Yes" th:field="*{value}"/> Yes <br/>
-                                        <input type="radio" class="form-control input-sm" name="answer"  value="No" th:field="*{value}"/> No <br/>
-                                        <input type="radio" class="form-control input-sm" name="answer"  value="Don't know" th:field="*{value}"/> Don't know <br/>
+                                        <span th:each="a : ${answers}">
+                                            <input type="radio" class="form-control input-sm" name="answer"  th:value="${a}" th:field="*{value}"/> <span th:text="${a}"></span><br/>
+                                        </span>
                                         <button class="btn btn-warning btn-sm" type="submit">Send</button>
                                     </div>
                                 </form>
