@@ -7,24 +7,37 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" >
-
-<!--    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">-->
-<!--    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">-->
-<!--    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">-->
-<!--    <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>-->
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >-->
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >-->
     <link rel="stylesheet" th:href="@{/css/main.css}">
-<!--    to jest od ikonek-->
+<!--    to niżej jest od ikonek-->
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.8/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!--    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">-->
     <style type="text/css">
-        .register {
-            position: relative;
-            /*max-width: 800px;*/
-            margin: 0 auto;
-            position: absolute;
+
+        .register form {
+            color: #434343;
+            border-radius: 1px;
+            margin-bottom: 15px;
+            background: #fff;
+            border: 1px solid #f3f3f3;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .register .btn {
+            background: #1387e0;
+            border: none;
+            line-height: normal;
+        }
+        .register .btn:hover, .register .btn:focus {
+            background: #1387e0;
+        }
+        .register a {
+            color: #1387e0;
+        }
+        .register input[type="radio"]{
+            margin: 0 10px 0 10px;
+        }
+        .title {
+            color: #1387e0;
         }
 
     </style>
@@ -57,19 +70,15 @@
 </nav>
 
 
-
-
-
-
-
-<h2>Register account</h2>
-<p>Register to have access to our diagnosis tool.</p>
-
-
+<br>
     <center><div class="register">
-            <div class="row">
-            <form th:action="@{/registration}" th:object="${userForm}" method="post" class="form-signin">
+        <div class="title">
+        <h2>Register account</h2>
+        <p>Register to have access to our diagnosis tool.</p>
+    </div>
 
+            <div class="row justify-content-center">
+            <form th:action="@{/registration}" th:object="${userForm}" method="post" class="form-signin">
                 <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
                    th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
                     error</p>
@@ -121,7 +130,6 @@
                 <div class="form-group " th:classappend="${#fields.hasErrors('gender')}? 'has-error':''">
                     <div class="input-group-prepend">
                         <input type="radio" th:field="*{gender}" value="Male"/>     Male
-
                         <input type="radio"th:field="*{gender}" value="Female"/>    Female
 
                         <p class="error-message"
@@ -159,21 +167,9 @@
                 </div>
                 <span>Already registered? <a href="/" th:href="@{/login}">Login
                                     here</a></span>
-
             </form>
-
             </div>
-
     </div></center>
-
-
 <br><br>
-<!--<article class="bg-secondary mb-3">-->
-<!--    <div class="card-body text-center">-->
-<!--        <h3 class="text-white mt-3">Remote diagnosis platform</h3>-->
-<!--    </div>-->
-<!--    <br><br>-->
-<!--</article>-->
-
 </body>
 </html>

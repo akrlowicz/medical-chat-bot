@@ -66,7 +66,7 @@
             margin-bottom: 20px;
         }
         .login-form .form-control, .login-form .btn {
-            min-height: 40px;
+            min-height: 20px;
             border-radius: 2px;
             transition: all 0.5s;
         }
@@ -128,62 +128,13 @@
 
     </div>
 </nav>
-<!--<nav class="navbar navbar-expand-lg navbar-dark bg-primary">-->
-<!--    <a class="navbar-brand" href="#">E-Doctor</a>-->
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
 
-<!--    <div class="collapse navbar-collapse" id="navbarColor01">-->
-<!--        <ul class="navbar-nav mr-auto">-->
-<!--            <li class="nav-item active">-->
-<!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#" th:href="@{/chat}">Chatbot</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#" th:href="@{/login}">Login</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                            <a class="nav-link" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></a>-->
-
-<!--                            </li>-->
-<!--        </ul>-->
-
-<!--    </div>-->
-<!--</nav>-->
-<!--<nav class="navbar navbar-expand-lg navbar-dark">-->
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-<!--    <a class="navbar-brand" href="#">E-Doctor</a>-->
-<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-
-<!--    <div class="collapse navbar-collapse" id="navbarColor03">-->
-<!--        <ul class="navbar-nav mr-auto">-->
-
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" th:href="@{/chat}">Chatbot</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" th:href="@{/login}">Log in</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--            <a class="nav-link" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></a>-->
-
-<!--            </li>-->
-<!--        </ul>-->
-
-<!--    </div>-->
-<!--</nav>-->
 
 
 <div class="login-form">
     <form th:action="@{/login}" method="post" class="form-signin">
         <div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
         <h4 class="modal-title">Login to Your Account</h4>
-
 
         <div th:if="${param.error}">
             <div class="alert alert-danger">Invalid username or
@@ -204,14 +155,10 @@
             <input name="password" type="password"  class="form-control" placeholder="Password"/>
 
         </div>
-
-
-
         <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-        <span>New user? <a href="/" th:href="@{/registration}">Register
-            here</a></span>
+        <center><span>New user? <a href="/" th:href="@{/registration}">Register
+            here</a></span></center>
     </form>
-
 </div>
 </body>
 </html>
