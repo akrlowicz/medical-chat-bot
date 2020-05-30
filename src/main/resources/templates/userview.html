@@ -10,8 +10,6 @@
 
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
-    <link rel="stylesheet" th:href="@{/css/main.css}">
-    <link rel="stylesheet" th:href="@{/css/chat.css}">
 
     <link th:href="@{css/font-face.css}" rel="stylesheet" media="all">
     <link th:href="@{vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
@@ -36,25 +34,27 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">E-Doctor</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-doctor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link"  th:href="@{/index}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" th:href="@{/chat}">Chatbot</a>
+                <a class="nav-link" th:href="@{/chat}">Chatbot</a>
             </li>
+                        <li class="nav-item">
+                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                        </li>
             <li class="nav-item">
-                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/userview}">Account</a>
             </li>
         </ul>
-
     </div>
 </nav>
 
@@ -86,8 +86,9 @@
                                     <i class="zmdi zmdi-account-o"></i>
                                 </div>
                                 <div class="text">
-                                    <h2 th:text="${userdata.getName()}"/>
+                                    <h2 style="font-size: 25px" th:text="${userdata.getName()}"/>
                                     <span>profile</span>
+                                    <div class="row form-group"></div>
                                     <div class="row form-group"></div>
                                 </div>
                             </div>
@@ -213,6 +214,7 @@
                         <h3 class="title-2 tm-b-5">Change password</h3>
                         <div class="row no-gutters">
                             <div class="col-xl-12">
+                                <div class="row form-group"></div>
                                 <div class="row form-group"></div>
                                 <form th:action="@{/updatepassword}" th:object="${passwordForm}" method="post" class="form-signin">
 
