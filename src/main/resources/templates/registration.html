@@ -4,43 +4,14 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>Registration</title>
     <meta name="description" content="">
     <meta name="viewport" >
     <link rel="stylesheet" th:href="@{/css/main.css}">
 <!--    to niżej jest od ikonek-->
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.8/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <style type="text/css">
-
-        .register form {
-            color: #434343;
-            border-radius: 1px;
-            margin-bottom: 15px;
-            background: #fff;
-            border: 1px solid #f3f3f3;
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-        }
-        .register .btn {
-            background: #1387e0;
-            border: none;
-            line-height: normal;
-        }
-        .register .btn:hover, .register .btn:focus {
-            background: #1387e0;
-        }
-        .register a {
-            color: #1387e0;
-        }
-        .register input[type="radio"]{
-            margin: 0 10px 0 10px;
-        }
-        .title {
-            color: #1387e0;
-        }
-
-    </style>
+    <link rel="stylesheet" th:href="@{/css/registration.css}">
 
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
     <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
@@ -74,11 +45,12 @@
 
 
 <br>
-    <center><div class="register">
+   <div class="register">
+        <center>
         <div class="title">
         <h2>Register account</h2>
         <p>Register to have access to our diagnosis tool.</p>
-    </div>
+    </div></center>
 
             <div class="row justify-content-center">
             <form th:action="@{/registration}" th:object="${userForm}" method="post" class="form-signin">
@@ -87,9 +59,7 @@
                     error</p>
 
                 <div class="form-group  " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                    </div>
+                   <label>Enter first name and last name</label>
                     <input size="70" type="text"  class="form-control" placeholder="Name and surname"
                            autofocus="true" th:field="*{name}">
                     <p class="error-message"
@@ -98,9 +68,7 @@
                 </div>
 
                 <div class="form-group " th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                    </div>
+                    <label>Enter email</label>
                     <input size="70" type="email"  class="form-control" placeholder="Email"
                            autofocus="true" th:field="*{email}">
                     <p class="error-message"
@@ -109,9 +77,7 @@
                 </div>
 
                 <div class="form-group " th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                    </div>
+                    <label>Enter password</label>
                     <input size="70" type="password" class="form-control" placeholder="Password"
                            autofocus="true" th:field="*{password}"/>
                     <p class="error-message"
@@ -120,9 +86,7 @@
                 </div>
 
                 <div class="form-group " th:classappend="${#fields.hasErrors('birth')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
-                    </div>
+                    <label>Enter date of birth</label>
                     <input size="70" type="date" class="form-control" placeholder="Date of birth"
                            autofocus="true" th:field="*{birth}"/>
                     <p class="error-message"
@@ -131,6 +95,7 @@
                 </div>
 
                 <div class="form-group " th:classappend="${#fields.hasErrors('gender')}? 'has-error':''">
+
                     <div class="input-group-prepend">
                         <input type="radio" th:field="*{gender}" value="Male"/>     Male
                         <input type="radio"th:field="*{gender}" value="Female"/>    Female
@@ -142,9 +107,7 @@
                 </div>
 
                 <div class="form-group "  th:classappend="${#fields.hasErrors('height')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-male"></i> </span>
-                    </div>
+                    <label>Enter height in cm</label>
                     <input size="70" type="number"  class="form-control" placeholder="Height"
                            autofocus="true" th:field="*{height}">
                     <p class="error-message"
@@ -155,9 +118,7 @@
 
                 <div class="form-group "
                      th:classappend="${#fields.hasErrors('weight')}? 'has-error':''">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"> <i class="fa fa-male"></i> </span>
-                    </div>
+                    <label>Enter weight in kg</label>
                     <input size="70" type="number"  class="form-control" placeholder="Weight"
                                   autofocus="true" th:field="*{weight}"/>
                     <p class="error-message"
@@ -172,7 +133,7 @@
                                     here</a></span>
             </form>
             </div>
-    </div></center>
+    </div>
 <br><br>
 </body>
 </html>

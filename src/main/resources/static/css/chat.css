@@ -71,3 +71,10 @@ li.right
     width: inherit;
     height: inherit;
 }
+
+.btn{
+    border-radius: 3px;
+}
+form-control .form-control:focus{
+    border-radius: 3px;
+}

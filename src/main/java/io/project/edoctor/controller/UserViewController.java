@@ -73,17 +73,18 @@ public class UserViewController {
         User user = userService.findByEmail(auth.getName());
         UserData userData = user.getUserData();
 
-        if (!userForm.getEmail().isEmpty()) {
-            user.setEmail(userForm.getEmail());
-            userService.save(user);
-            return "redirect:/logout";
-        }
+
         if (!userForm.getName().isEmpty())
             userData.setName(userForm.getName());
         if (userForm.getHeight() != null)
             userData.setHeight(userForm.getHeight());
         if (userForm.getWeight() != null)
             userData.setWeight(userForm.getWeight());
+        if (!userForm.getEmail().isEmpty()) {
+            user.setEmail(userForm.getEmail());
+            userService.save(user);
+            return "redirect:/logout";
+        }
 
         userDataService.saveUserData(userData);
 
@@ -91,15 +92,15 @@ public class UserViewController {
     }
 
     @PostMapping("/updatepassword")
-    public String updateUserPassword(@ModelAttribute("passwordForm") @Valid ChangePasswordForm passwordForm, BindingResult bindingResult, Model model, Authentication auth) {
+    public String updateUserPassword(Authentication auth,@ModelAttribute("passwordForm") @Valid ChangePasswordForm passwordForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/userview";
+            return "userview";
         }
 
         User user = userService.findByEmail(auth.getName());
 
-        if (bCryptPasswordEncoder.matches(passwordForm.getOldPassword(),user.getPassword())){
+        if (bCryptPasswordEncoder.matches(passwordForm.getOldPassword(), user.getPassword())){
             if  (passwordForm.getNewPassword().equals(passwordForm.getConfirmPassword())) {
                 user.setPassword(passwordForm.getNewPassword());
             } else
@@ -121,7 +122,7 @@ public class UserViewController {
         UserInterview userInterview = interviewService.findById(id);
         List<UserDiagnosis> userDiagnosisList = userInterview.getUserDiagnoses();
 
-        String filename = userInterview.getDate().toString();
+        String filename = userInterview.getDate().toString() + "-" + userInterview.getId();
 
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(filename + ".pdf"));

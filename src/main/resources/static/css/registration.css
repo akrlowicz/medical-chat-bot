@@ -1,0 +1,36 @@
+
+body {
+    background-color: #f9f9fb;
+    background-image: url("/img/pic6.jpg");
+    height: 700px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.register form {
+    color: #434343;
+    border-radius: 1px;
+    margin-bottom: 15px;
+    background: #fff;
+    border: 1px solid #f3f3f3;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.register .btn {
+    background: #1387e0;
+    border: none;
+    line-height: normal;
+}
+.register .btn:hover, .register .btn:focus {
+    background: #1387e0;
+}
+.register a {
+    color: #1387e0;
+}
+.register input[type="radio"]{
+    margin: 0 10px 0 10px;
+}
+.title {
+    color: #1387e0;
+}

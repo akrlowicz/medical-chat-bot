@@ -712,7 +712,7 @@ section {
 
 /* ----- Input ----- */
 .au-input {
-    line-height: 43px;
+    line-height: 53px;
     border: 1px solid #e5e5e5;
     font-size: 14px;
     color: #666;
@@ -3152,9 +3152,9 @@ section {
 }
 
 .overview-item--c1 {
-    background-image: -moz-linear-gradient(90deg, #3f5efb 0%, #fc466b 100%);
-    background-image: -webkit-linear-gradient(90deg, #3f5efb 0%, #fc466b 100%);
-    background-image: -ms-linear-gradient(90deg, #3f5efb 0%, #fc466b 100%);
+    background-image: -moz-linear-gradient(90deg, #3f5efb 0%, #31e8fc 100%);
+    background-image: -webkit-linear-gradient(90deg, #3f5efb 0%, #31e8fc 100%);
+    background-image: -ms-linear-gradient(90deg, #3f5efb 0%, #31e8fc 100%);
 }
 
 .overview-item--c2 {
@@ -3164,9 +3164,9 @@ section {
 }
 
 .overview-item--c3 {
-    background-image: -moz-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
-    background-image: -webkit-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
-    background-image: -ms-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+    background-image: -moz-linear-gradient(90deg, #900d0e 0%, #ff6a00 100%);
+    background-image: -webkit-linear-gradient(90deg, #900d0e 0%, #ff6a00 100%);
+    background-image: -ms-linear-gradient(90deg, #900d0e 0%, #ff6a00 100%);
 }
 
 .overview-item--c4 {
@@ -3264,7 +3264,7 @@ section {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    background: #fff;
+    background: #ffffff;
     overflow: hidden;
 }
 
@@ -3471,10 +3471,16 @@ section {
     color: #808080;
 }
 
+.au-message {
+    color: #808080;
+    overflow-y: scroll;
+}
+
+
 .au-message-list {
     height: 424px;
     position: relative;
-    overflow-y: auto;
+
 }
 
 .au-message__noti {

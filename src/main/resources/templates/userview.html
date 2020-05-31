@@ -272,7 +272,7 @@
         </div>
 
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-lg-8">
                     <div class="au-card au-card--no-pad m-b-40">
                         <div class="au-card-title" >
                             <div class="bg-overlay bg-overlay--blue"></div>
@@ -296,7 +296,7 @@
                                                 <th:block th:each="diagnosis :${interview.userDiagnoses}">
                                                     <div class="text">
                                                         <h5 class="name" th:text="${diagnosis.name}"></h5>
-                                                        <p>Probability: </p><span th:text="${diagnosis.probability}"/>
+                                                        <span>Probability: </span><span th:text="${diagnosis.probability}"/>
                                                         </div>
                                                 </th:block>
                                                 <div class="au-message__item-time">
@@ -306,7 +306,7 @@
                                             <form th:action="@{/save}" method="post">
                                                 <div class="au-task__footer">
                                                     <input type="hidden" name="id" th:value="${interview.id}" />
-                                                    <button class="au-btn btn-primary btn-block" type="submit" >Save diagnosis to file</button>
+                                                    <button class="au-btn btn-lg btn-primary btn-block" type="submit" >Save diagnosis to file</button>
                                                 </div>
                                             </form>
                                             </div>

@@ -22,7 +22,10 @@ public class ChangePasswordForm {
         @NotBlank(message = "Confirm new password")
         private String confirmPassword;
 
-        public String getOldPassword() {
+    public ChangePasswordForm() {
+    }
+
+    public String getOldPassword() {
             return oldPassword;
         }
 
