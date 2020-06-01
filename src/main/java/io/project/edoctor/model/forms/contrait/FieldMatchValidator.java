@@ -4,7 +4,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Object> {
+public class FieldMatchValidator implements ConstraintValidator<FieldMatch,Object> {
 
 
     private String firstFieldName;
@@ -23,21 +23,6 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         boolean valid = true;
         try
         {
-
-//            final LoginData loginData = (LoginData) value;
-//            boolean isValid = loginData.getPassword()
-//            final UserDto userDto = (UserDto) obj;
-//            boolean isValid = userDto.getPassword().equals(userDto.getMatchingPassword());
-//
-//            if (!isValid) {
-//                context.disableDefaultConstraintViolation();
-//                context
-//                        .buildConstraintViolationWithTemplate( message )
-//                        .addPropertyNode( "matchingPassword" ).addConstraintViolation();
-//            }
-//
-//            return isValid;
-
             final Object firstObj = BeanUtils.getProperty(value, firstFieldName);
             final Object secondObj = BeanUtils.getProperty(value, secondFieldName);
 

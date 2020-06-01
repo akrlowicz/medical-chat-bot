@@ -4,31 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>E-doctor</title>
+
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
     <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">
 
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
 
-    <link th:href="@{css/font-face.css}" rel="stylesheet" media="all">
     <link th:href="@{vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
     <link th:href="@{vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
     <link th:href="@{vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
 
-    <!-- Bootstrap CSS-->
-    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 
-    <!-- Vendor CSS-->
-    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
-    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
     <link th:href="@{/css/theme.css}" rel="stylesheet" media="all">
 
 </head>
@@ -48,18 +34,16 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/chat}">Chatbot</a>
             </li>
-                        <li class="nav-item">
-                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                        </li>
             <li class="nav-item">
                 <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/userview}">Account</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
             </li>
         </ul>
     </div>
 </nav>
-
-
-
 
 <div class="main-content">
     <div class="section__content section__content--p30">
@@ -70,6 +54,11 @@
 
                     <h1>Welcome, <span th:text="${userdata.getName()}"/></h1>
                     <h3>How are you feeling today?</h3>
+                    <div class="row form-group"></div>
+                    <div class="row form-group"></div>
+                    <form th:action="@{/chat} " method="get">
+                    <button class="btn btn-primary btn-lg" type="submit">Tell us about it</button>
+                    </form>
                 </div>
                 <div class="col-md-4">
                     <img th:if="${userdata.getGender() == 'Female'}" th:src="@{/img/female.jpg}" alt="ppl" height="400" width="400">
@@ -86,7 +75,7 @@
                                     <i class="zmdi zmdi-account-o"></i>
                                 </div>
                                 <div class="text">
-                                    <h2 style="font-size: 25px" th:text="${userdata.getName()}"/>
+                                    <h2 style="font-size: 22px" th:text="${userdata.getName()}"/>
                                     <span>profile</span>
                                     <div class="row form-group"></div>
                                     <div class="row form-group"></div>
@@ -105,7 +94,7 @@
                                 <div class="text">
                                     <h2 th:if="${!user.getInterviews().isEmpty()}" th:text="${user.getInterviews().get(user.getInterviews().size()-1).getDate()}" />
                                     <span th:if="${!user.getInterviews().isEmpty()}">was your last interview</span>
-                                    <h2 th:unless="${!user.getInterviews().isEmpty()}">Start</h2>
+                                    <h2 th:unless="${!user.getInterviews().isEmpty()}"><a style="color: #ffffff" th:href="@{/chat}">Start</a></h2>
                                     <span th:unless="${!user.getInterviews().isEmpty()}">your first interview</span>
                                     <div class="row form-group"></div>
                                 </div>
@@ -141,7 +130,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Manage your account</h3>
+                    <h3 style="font-weight: bold">Manage your account</h3>
                     <div class="row form-group"></div>
                 </div>
                 <div class="col-lg-6">
@@ -154,15 +143,11 @@
 
                                 <form th:action="@{/updateinfo}" th:object="${userForm}" method="post" class="form-signin">
 
-                                    <div class="form-group " th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
+                                    <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                                       th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+                                        error</p>
 
-                                    <label>Email</label>
-                                    <input type="email"  class="form-control" th:placeholder="${user.getEmail()}"
-                                           autofocus="true" th:field="*{email}">
-                                    <p class="error-message"
-                                       th:each="error: ${#fields.errors('email')}"
-                                       th:text="${error}">Validation error</p>
-                                    </div>
+                                    <div class="row form-group"></div>
 
                                     <div class="form-group " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
 
@@ -196,8 +181,13 @@
                                            th:text="${error}">Validation error</p>
                                     </div>
 
+                                    <div class="row form-group"></div>
+                                    <div class="row form-group"></div>
+                                    <div class="row form-group"></div>
+
+
                                     <div class="form-group">
-                                        <button class="au-btn btn-lg btn-primary btn-block" type="submit">Change information</button>
+                                        <button class="btn btn-primary btn-lg btn-block" type="submit">Change information</button>
                                     </div>
 
                                 </form>
@@ -212,11 +202,11 @@
                 <div class="au-card chart-percent-card">
                     <div class="au-card-inner">
                         <h3 class="title-2 tm-b-5">Change password</h3>
-                        <div class="row no-gutters">
+                        <div class="row">
                             <div class="col-xl-12">
                                 <div class="row form-group"></div>
                                 <div class="row form-group"></div>
-                                <form th:action="@{/updatepassword}" th:object="${passwordForm}" method="post" class="form-signin">
+                                <form th:action="@{/updatepassword}" th:object="${passwordForm}" method="post" >
 
                                     <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
                                        th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
@@ -253,13 +243,11 @@
                                     <div class="row form-group"></div>
                                     <div class="row form-group"></div>
                                     <div class="row form-group"></div>
-                                    <div class="row form-group"></div>
-                                    <div class="row form-group"></div>
-                                    <div class="row form-group"></div>
 
                                     <div class="form-group">
-                                        <button class="au-btn btn-lg btn-primary btn-block" type="submit" >Change Password</button>
+                                        <button class="btn btn-lg btn-primary btn-block" type="submit" >Change Password</button>
                                     </div>
+
                                 </form>
 
                             </div>
@@ -277,7 +265,7 @@
                         <div class="au-card-title" >
                             <div class="bg-overlay bg-overlay--blue"></div>
                             <h3>
-                                <i class="zmdi zmdi-comment-text"></i>Latest diagnosis</h3>
+                                <i class="zmdi zmdi-comment-text"></i>Your list of diagnosis</h3>
                         </div>
                         <div class="au-inbox-wrap js-inbox-wrap">
                             <div class="au-message js-list-load" th:if="${!user.interviews.isEmpty()}">
@@ -306,7 +294,7 @@
                                             <form th:action="@{/save}" method="post">
                                                 <div class="au-task__footer">
                                                     <input type="hidden" name="id" th:value="${interview.id}" />
-                                                    <button class="au-btn btn-lg btn-primary btn-block" type="submit" >Save diagnosis to file</button>
+                                                    <button class="btn btn-lg btn-primary btn-block" type="submit" >Save diagnosis to file</button>
                                                 </div>
                                             </form>
                                             </div>
@@ -325,13 +313,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="copyright">
-            <p>Copyright © 2018 Colorlib. All rights reserved.</p>
-        </div>
-    </div>
-</div>
 
 <script th:src="@{/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
 <script>

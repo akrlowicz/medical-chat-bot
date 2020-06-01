@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="" />
+
+    <title>Error page</title>
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.0.8/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
+</head>
+<body>
+
+<div class="qbootstrap-loader"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-doctor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link"  th:href="@{/index}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/chat.html}">Chatbot</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/userview}">Account</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+    <div class="row form-group"></div>
+    <div class="row form-group"></div>
+    <div class="row form-group"></div>
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-2">
+            <div style="text-align: center;"><h1 style="font-weight: bold">Error Page</h1>
+                <h2>You are seeing this page because something went wrong</h2>
+                <p th:text="${message}">It apperrs either there is an error in your actions or the page
+                    doesn't exist anymore.....</p>
+                <div class="row form-group"></div>
+                <div class="form-group">
+                    <form th:action="@{/userview}" method="get">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Get back to your account page</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<script th:src="@{/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>
+<script>
+    window.jQuery || document.write('<script th:src="@{js/vendor/jquery-1.11.2.min.js}"><\/script>')
+</script>
+
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{http://code.jquery.com/jquery.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+
+
+
+</body>
+</html>

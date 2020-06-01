@@ -16,7 +16,7 @@ body {
     border-color: #5a6eba;
 }
 .login-form {
-    width: 350px;
+    width: 440px;
     margin: 0 auto;
     padding: 30px 0;
 }
@@ -54,22 +54,14 @@ body {
 }
 .login-form .form-control, .login-form  {
     min-height: 20px;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: all 0.5s;
-}
-
-.login-form .btn {
-    background: #1387e0;
-    max-height: 100px;
-    margin-bottom: 10px;
-}
-.login-form .btn:hover, .login-form .btn:focus {
-    background: #1387e0;
 }
 
 .login-form .forgot-link {
     float: right;
 }
+
 .login-form .small {
     font-size: 13px;
 }

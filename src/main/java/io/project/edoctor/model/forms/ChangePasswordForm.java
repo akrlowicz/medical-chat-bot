@@ -9,45 +9,44 @@ import javax.validation.constraints.Size;
 public class ChangePasswordForm {
 
 
-        @Size(min = 6, message = "Password too short")
-        @NotBlank(message = "Enter old password")
-        private String oldPassword;
+    @NotBlank(message = "Enter old password")
+    private String oldPassword;
 
-        @Size(min = 6, message = "Password too short")
-        @NotBlank(message = "Enter new password")
-        private String newPassword;
+    @Size(min = 6, message = "Password too short")
+    @NotBlank(message = "Enter new password")
+    private String newPassword;
 
 
-        @Size(min = 6, message = "Password too short")
-        @NotBlank(message = "Confirm new password")
-        private String confirmPassword;
+    @Size(min = 6, message = "Password too short")
+    @NotBlank(message = "Confirm new password")
+    private String confirmPassword;
 
     public ChangePasswordForm() {
     }
 
     public String getOldPassword() {
-            return oldPassword;
-        }
+        return oldPassword;
+    }
 
-        public void setOldPassword(String oldPassword) {
-            this.oldPassword = oldPassword;
-        }
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
 
-        public String getNewPassword() {
-            return newPassword;
-        }
+    public String getNewPassword() {
+        return newPassword;
+    }
 
-        public void setNewPassword(String newPassword) {
-            this.newPassword = newPassword;
-        }
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
 
-        public String getConfirmPassword() {
-            return confirmPassword;
-        }
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
-        public void setConfirmPassword(String confirmPassword) {
-            this.confirmPassword = confirmPassword;
-        }
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
 
 }

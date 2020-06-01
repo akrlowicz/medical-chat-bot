@@ -18,6 +18,8 @@ import io.project.edoctor.service.UserServiceImpl;
 import org.hibernate.annotations.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,8 +68,14 @@ public class UserViewController {
 
 
         if (bindingResult.hasErrors()) {
+            User user = userService.findByEmail(auth.getName());
+            UserData userData = user.getUserData();
 
-            return "redirect:/userview";
+            model.addAttribute("user",user);
+            model.addAttribute("userdata",userData);
+            model.addAttribute("userForm", userForm);
+            model.addAttribute("passwordForm", new ChangePasswordForm());
+            return "userview";
         }
 
         User user = userService.findByEmail(auth.getName());
@@ -80,11 +88,7 @@ public class UserViewController {
             userData.setHeight(userForm.getHeight());
         if (userForm.getWeight() != null)
             userData.setWeight(userForm.getWeight());
-        if (!userForm.getEmail().isEmpty()) {
-            user.setEmail(userForm.getEmail());
-            userService.save(user);
-            return "redirect:/logout";
-        }
+
 
         userDataService.saveUserData(userData);
 
@@ -92,19 +96,25 @@ public class UserViewController {
     }
 
     @PostMapping("/updatepassword")
-    public String updateUserPassword(Authentication auth,@ModelAttribute("passwordForm") @Valid ChangePasswordForm passwordForm, BindingResult bindingResult, Model model) {
+    public String updateUserPassword(Authentication auth, @ModelAttribute("passwordForm") @Valid ChangePasswordForm passwordForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+            User user = userService.findByEmail(auth.getName());
+            UserData userData = user.getUserData();
+
+            model.addAttribute("user",user);
+            model.addAttribute("userdata",userData);
+            model.addAttribute("userForm", new ChangeInfoForm());
+            model.addAttribute("passwordForm", passwordForm);
             return "userview";
         }
 
-        User user = userService.findByEmail(auth.getName());
+        String email = auth.getName();
+        User user = userService.findByEmail(email);
 
         if (bCryptPasswordEncoder.matches(passwordForm.getOldPassword(), user.getPassword())){
-            if  (passwordForm.getNewPassword().equals(passwordForm.getConfirmPassword())) {
+            if  (passwordForm.getNewPassword().equals(passwordForm.getConfirmPassword()))
                 user.setPassword(passwordForm.getNewPassword());
-            } else
-                throw new InvalidEmailOrPassword("Passwords are not the same");
         } else
             throw new InvalidEmailOrPassword("Old password does not match");
 

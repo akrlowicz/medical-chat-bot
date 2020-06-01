@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>E-doctor</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" >
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}" >
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" >
+
     <link rel="stylesheet" th:href="@{/css/chat.css}">
     <script th:src="@{/js/modernizr-2.6.2.min.js}"></script>
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
@@ -103,7 +104,7 @@
                                 <form th:action="@{/chat}" th:object="${userMessage}" method="post">
                                     <div class="form-group input-group">
                                         <input type="text" class="form-control input-sm margin-right-15" placeholder="Type your message here..." th:field="*{value}" autofocus="true"/>
-                                        <button class="btn btn-warning btn-sm" type="submit">Send</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Send</button>
                                     </div>
                                 </form>
                             </span>
@@ -114,7 +115,7 @@
                                         <span class="margin-right-15" th:each="a : ${answers}">
                                             <input type="radio" name="answer" class="answer"  th:value="${a}" th:field="*{value}" th:text="${a}"/>
                                         </span>
-                                        <button class="btn btn-warning btn-sm" type="submit">Send</button>
+                                        <button class="btn btn-primary btn-sm" type="submit">Send</button>
                                     </div>
                                 </form>
                             </span>

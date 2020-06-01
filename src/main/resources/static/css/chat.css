@@ -20,7 +20,7 @@
 
 .message-right
 {
-    background-color: #1a82ae;
+    background-color: #1366bf;
     padding: 15px;
     color: white;
     border-radius: 35px;
@@ -75,6 +75,6 @@ li.right
 .btn{
     border-radius: 3px;
 }
-form-control .form-control:focus{
+form-control .form-control:focus .form-control:hover .form-contro:active{
     border-radius: 3px;
 }

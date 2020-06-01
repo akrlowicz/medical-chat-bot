@@ -5,20 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
-    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
-<!--    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">-->
+
     <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>
     <script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.css}">
 
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}">
     <link th:href="@{https://fonts.googleapis.com/css?family=Roboto|Varela+Round}" rel="stylesheet">
 </head>
@@ -79,9 +73,9 @@
             <input name="password" type="password"  class="form-control" placeholder="Password"/>
 
         </div>
-        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
-        <center><span>New user? <a href="/" th:href="@{/registration}">Register
-            here</a></span></center>
+        <input type="submit" class="btn btn-primary btn-block" value="Login">
+        <span>New user? <a href="/" th:href="@{/registration}">Register
+            here</a></span>
     </form>
 </div>
 </div>

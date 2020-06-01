@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public BCryptPasswordEncoder bCryptPasswordEncoder;
 
-
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(s);
@@ -57,4 +56,5 @@ public class UserServiceImpl implements UserService {
         user.setRole("ROLE_PATIENT");
         userRepository.save(user);
     }
+
 }
