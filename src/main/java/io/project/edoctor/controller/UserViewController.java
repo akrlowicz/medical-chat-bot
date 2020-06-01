@@ -11,27 +11,20 @@ import io.project.edoctor.model.entity.UserDiagnosis;
 import io.project.edoctor.model.entity.UserInterview;
 import io.project.edoctor.model.forms.ChangeInfoForm;
 import io.project.edoctor.model.forms.ChangePasswordForm;
-import io.project.edoctor.model.forms.RegistrationForm;
 import io.project.edoctor.service.InterviewService;
 import io.project.edoctor.service.UserDataService;
 import io.project.edoctor.service.UserServiceImpl;
 import org.hibernate.annotations.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -159,18 +152,10 @@ public class UserViewController {
             table.addCell(userDiagnosis.getProbability().toString());
         }
 
-        //String p = "jetbrains://idea/navigate/reference?project=e-doctor&path=static/img/pic2.jpg";
-        //Path path = Paths.get("src/main/resources/static/img/pic2.jpg").toURI());
-
-        //Image img = Image.getInstance(path.toString());
-
-        document.add(title);
-        document.add(title2);
-        document.add(chunk);
-        document.add(chunk2);
+        document.add(title); document.add(title2);
+        document.add(chunk); document.add(chunk2);
         document.add(table); document.add(new Paragraph(" "));
         document.add(chunk3);
-       // document.add(img);
         document.close();
 
         return "redirect:/userview";
