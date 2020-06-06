@@ -2,10 +2,7 @@ package io.project.edoctor.model.forms;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 
@@ -28,10 +25,15 @@ public class RegistrationForm {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
+    @NotNull
     private LocalDate birth;
 
+    @Max(220)
+    @Min(140)
     private Integer height;
 
+    @Max(150)
+    @Min(40)
     private Integer weight;
 
     public RegistrationForm() {

@@ -1,14 +1,20 @@
 package io.project.edoctor.model.forms;
 
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 public class ChangeInfoForm {
 
 
     private String name;
 
+    @Max(220)
+    @Min(140)
     private Integer height;
 
-
+    @Max(150)
+    @Min(40)
     private Integer weight;
 
     public ChangeInfoForm() {
