@@ -15,7 +15,7 @@ public class UserInterview {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_login_id", referencedColumnName = "id")
     private User user;
 
     @OneToMany(

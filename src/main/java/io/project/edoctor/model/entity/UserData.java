@@ -21,7 +21,7 @@ public class UserData {
     private Integer weight;
 
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_login_id", referencedColumnName = "id")
     private User userData;
 
     public UserData() {
