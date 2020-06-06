@@ -1,10 +1,7 @@
 package io.project.edoctor.controller;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 import io.project.edoctor.exception.InvalidEmailOrPassword;
+import io.project.edoctor.model.GeneratePdf;
 import io.project.edoctor.model.entity.User;
 import io.project.edoctor.model.entity.UserData;
 import io.project.edoctor.model.entity.UserDiagnosis;
@@ -14,8 +11,12 @@ import io.project.edoctor.model.forms.ChangePasswordForm;
 import io.project.edoctor.service.InterviewService;
 import io.project.edoctor.service.UserDataService;
 import io.project.edoctor.service.UserServiceImpl;
-import org.hibernate.annotations.Generated;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -23,10 +24,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Controller
 public class UserViewController {
@@ -117,63 +124,28 @@ public class UserViewController {
 
     }
 
-    @PostMapping("/save")
-    public String saveDiagnosis(@RequestParam Integer id,Model model, Authentication auth) throws Exception {
+
+    @GetMapping(value = "/diagnosispdf")
+    public ResponseEntity<InputStreamResource> openDiagnosis(@RequestParam Integer id, Model model, Authentication auth) throws Exception {
 
         User user = userService.findByEmail(auth.getName());
 
         UserInterview userInterview = interviewService.findById(id);
         List<UserDiagnosis> userDiagnosisList = userInterview.getUserDiagnoses();
 
-        String filename = userInterview.getDate().toString() + "-" + userInterview.getId();
+        String fileName = userInterview.getDate().toString() + "-" + userInterview.getId();
 
-        Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(filename + ".pdf"));
+        ByteArrayInputStream bis = GeneratePdf.generatePdf(user, userDiagnosisList);
 
-        document.open();
-        Font bigFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD,16, BaseColor.BLACK);
-        Font font = FontFactory.getFont(FontFactory.HELVETICA, 14, BaseColor.BLACK);
-        Font smallFont = FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
-        Paragraph title = new Paragraph("E-Doctor", bigFont); title.setAlignment(Element.ALIGN_CENTER);
-        Paragraph title2 = new Paragraph("Results for preliminary diagnosis", bigFont); title2.setAlignment(Element.ALIGN_CENTER);
+        InputStreamResource streamResource = new InputStreamResource(bis);
 
-        addEmptyLine(title2,2);
+        return ResponseEntity
+                .ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION,"inline;attachment;filename="+ fileName)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(streamResource);
 
-        Paragraph chunk = new Paragraph("Patient: " + user.getUserData().getName() + ", age: " + user.getUserData().getAge() + ", " + user.getUserData().getGender(), font);
-        Paragraph chunk2 = new Paragraph("Height: " + user.getUserData().getHeight() + "cm, weight: " + user.getUserData().getWeight() + "kg", font);
-        Paragraph chunk3 = new Paragraph("Please note that this is not a medical diagnosis. Consult your doctor to confirm your results.", smallFont);
-
-        addEmptyLine(chunk2,2);
-
-        PdfPTable table = new PdfPTable(2);
-        addTableHeader(table);
-        for (UserDiagnosis userDiagnosis: userDiagnosisList) {
-            table.addCell(userDiagnosis.getName());
-            table.addCell(userDiagnosis.getProbability().toString());
-        }
-
-        document.add(title); document.add(title2);
-        document.add(chunk); document.add(chunk2);
-        document.add(table); document.add(new Paragraph(" "));
-        document.add(chunk3);
-        document.close();
-
-        return "redirect:/userview";
     }
 
-    private void addTableHeader(PdfPTable table) {
-        Stream.of("Illness", "Probability")
-                .forEach(columnTitle -> {
-                    PdfPCell header = new PdfPCell();
-                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-                    header.setPhrase(new Phrase(columnTitle));
-                    table.addCell(header);
-                });
-    }
 
-    private static void addEmptyLine(Paragraph paragraph, int number) {
-        for (int i = 0; i < number; i++) {
-            paragraph.add(new Paragraph(" "));
-        }
-    }
 }

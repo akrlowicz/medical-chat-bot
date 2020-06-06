@@ -259,6 +259,10 @@
         </div>
         </div>
 
+        <div class="row form-group"></div>
+        <div class="row form-group"></div>
+        <div class="row form-group"></div>
+
             <div class="row">
                 <div class="col-lg-8">
                     <div class="au-card au-card--no-pad m-b-40">
@@ -291,10 +295,10 @@
                                                     <span th:text="${interview.date}"></span>
                                                 </div>
                                             </div>
-                                            <form th:action="@{/save}" method="post">
+                                            <form th:action="@{/diagnosispdf}" method="get" target="_blank">
                                                 <div class="au-task__footer">
                                                     <input type="hidden" name="id" th:value="${interview.id}" />
-                                                    <button class="btn btn-lg btn-primary btn-block" type="submit" >Save diagnosis to file</button>
+                                                    <button class="btn btn-lg btn-primary btn-lg btn-block" type="submit" >Generate diagnosis pdf</button>
                                                 </div>
                                             </form>
                                             </div>
@@ -303,6 +307,7 @@
                                     </div>
 
                                     </tr>
+
                                  </div>
 
                         </div>
@@ -310,8 +315,10 @@
                 </div>
             </div>
         </div>
+
+
     </div>
-</div>
+
 
 
 <script th:src="@{/ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js}"></script>

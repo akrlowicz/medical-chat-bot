@@ -13,14 +13,14 @@ body{
     width: 10px;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
     background: #ededed;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #1366bf;
+    background: #1387e0;
 }
 
 /* Handle on hover */

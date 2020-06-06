@@ -17,6 +17,25 @@ img {
 }
 
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #ededed;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1387e0;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1351a3;
+}
+
 .container {
     position: relative;
     /*max-width: 800px;*/

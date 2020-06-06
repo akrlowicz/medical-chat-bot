@@ -88,7 +88,7 @@ p {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #1366bf;
+    background: #1387e0;
 }
 
 /* Handle on hover */
@@ -516,6 +516,7 @@ section {
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     padding: 40px;
     padding-right: 35px;
+    margin-bottom: 50px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
