@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void isRegistered(String email) {
-        User user = userRepository.findByEmail(email);
+        User user = findByEmail(email);
         if (user != null) {
             throw new InvalidEmailOrPassword("Somebody with that email is already registered.");
         }
