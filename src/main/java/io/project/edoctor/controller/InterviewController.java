@@ -1,7 +1,7 @@
 package io.project.edoctor.controller;
 
+import io.project.edoctor.model.Message;
 import io.project.edoctor.model.entity.User;
-import io.project.edoctor.model.forms.RegistrationForm;
 import io.project.edoctor.service.InterviewService;
 import io.project.edoctor.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

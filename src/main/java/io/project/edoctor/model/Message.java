@@ -1,4 +1,4 @@
-package io.project.edoctor.controller;
+package io.project.edoctor.model;
 
 public class Message {
     private String sender;
