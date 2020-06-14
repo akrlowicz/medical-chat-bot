@@ -152,7 +152,7 @@
                                     <div class="form-group " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
 
                                         <label>Name</label>
-                                        <input type="text"  class="form-control" th:text="${userdata.getName()}"
+                                        <input type="text"  class="form-control" th:placeholder="${userdata.getName()}"
                                                autofocus="true" th:field="*{name}">
                                         <p class="error-message"
                                            th:each="error: ${#fields.errors('name')}"
@@ -161,8 +161,8 @@
 
                                     <div class="form-group "  th:classappend="${#fields.hasErrors('height')}? 'has-error':''">
 
-                                        <label>Height</label>
-                                        <input type="number"  class="form-control" th:text="${userdata.getHeight()}"
+                                        <label>Height, current: </label><span th:text="${userdata.getHeight()}"></span><span>kg</span>
+                                        <input type="number"  class="form-control" th:placeholder="${userdata.getHeight()}"
                                                autofocus="true" th:field="*{height}">
                                         <p class="error-message"
                                            th:each="error: ${#fields.errors('height')}"
@@ -173,8 +173,8 @@
                                     <div class="form-group "
                                          th:classappend="${#fields.hasErrors('weight')}? 'has-error':''">
 
-                                        <label>Weight</label>
-                                        <input type="number"  class="form-control" th:text="${userdata.getWeight()}"
+                                        <label>Weight, current: </label><span th:text="${userdata.getWeight()}"></span><span>kg</span>
+                                        <input type="number"  class="form-control" th:placeholder="${userdata.getWeight()}"
                                                autofocus="true" th:field="*{weight}"/>
                                         <p class="error-message"
                                            th:each="error: ${#fields.errors('weight')}"
