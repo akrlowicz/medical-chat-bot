@@ -152,7 +152,6 @@
                                     <div class="form-group " th:classappend="${#fields.hasErrors('name')}? 'has-error':''">
 
                                         <label>Name</label>
-
                                         <input type="text"  class="form-control" th:placeholder="${userdata.getName()}"
                                                autofocus="true" th:field="*{name}">
                                         <p class="error-message"
@@ -162,9 +161,9 @@
 
                                     <div class="form-group "  th:classappend="${#fields.hasErrors('height')}? 'has-error':''">
 
-                                        <label>Height</label>
+                                        <label>Height, current: </label><span th:text="${userdata.getHeight()}"></span><span>kg</span>
                                         <input type="number"  class="form-control" th:placeholder="${userdata.getHeight()}"
-                                               autofocus="true"  th:field="*{height}">
+                                               autofocus="true" th:field="*{height}">
                                         <p class="error-message"
                                            th:each="error: ${#fields.errors('height')}"
                                            th:text="${error}">Validation error</p>
@@ -174,9 +173,9 @@
                                     <div class="form-group "
                                          th:classappend="${#fields.hasErrors('weight')}? 'has-error':''">
 
-                                        <label>Weight</label>
+                                        <label>Weight, current: </label><span th:text="${userdata.getWeight()}"></span><span>kg</span>
                                         <input type="number"  class="form-control" th:placeholder="${userdata.getWeight()}"
-                                               autofocus="true" th:field="*{weight}">
+                                               autofocus="true" th:field="*{weight}"/>
                                         <p class="error-message"
                                            th:each="error: ${#fields.errors('weight')}"
                                            th:text="${error}">Validation error</p>
