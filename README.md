@@ -9,7 +9,13 @@ https://e-doctor-bot.herokuapp.com/
 Register in our demo web app with e-mail and password and log in. You will then see account panel with your info where you can change your data and start your first medical interview.
 Describe your symptomps to bot and press send button. Answer questions presented for you by bot accordingly to your health condition and wait for the result. Bot will tell you your diagnosis with probability value. Diagnosis will be saved on your account so you can review it and save it to pdf file.
 
-![alt](https://github.com/AlicjaKarlowicz/medical-chat-bot/blob/master/images/screen1.png?raw=true)
+![chatbot](https://github.com/AlicjaKarlowicz/medical-chat-bot/blob/master/images/screen1.png?raw=true)
+
+# User panel
+![user](https://github.com/AlicjaKarlowicz/medical-chat-bot/blob/master/images/userpanel.png?raw=true)
+
+# Chatbot diagnosis
+![chatbot](https://github.com/AlicjaKarlowicz/medical-chat-bot/blob/master/images/screen3.png?raw=true)
 
 # Authors
 Alicja Karłowicz, Karolina Tomala and Wioletta Łupkowska
